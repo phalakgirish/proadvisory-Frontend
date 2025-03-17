@@ -5,7 +5,7 @@ import { CustomizeComponent } from './customize/customize.component';
 import { DetailedpageComponent } from './detailedpage/detailedpage.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'customize', component: CustomizeComponent },
   { path: 'detailedpage/:id', component: DetailedpageComponent }// Route must be defined here
 ];

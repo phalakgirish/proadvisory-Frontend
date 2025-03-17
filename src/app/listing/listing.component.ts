@@ -93,5 +93,12 @@ export class ListingComponent {
     return (value / 1000) * 100; // Convert value to percentage for positioning
   }
 
+  sendWhatsAppMessage() {
+    const phoneNumber = "91XXXXXXXXXX"; // Replace with the actual number (including country code)
+    const message = encodeURIComponent("Hello, I'm interested in this property. Can you provide more details?");
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
   
+    window.open(whatsappURL, '_blank');
+  }
+
 }

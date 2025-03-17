@@ -7,19 +7,17 @@ import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-home',
-  imports: [NgIf, NgFor, FormsModule, RouterLink,NavbarComponent,FooterComponent,FooterComponent],
+  imports: [NgIf, NgFor, FormsModule, RouterLink, NavbarComponent, FooterComponent, FooterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements AfterViewChecked, OnInit, OnDestroy {
-  // isDropdownVisible: boolean = false;
-  // dropdownItems: string[] = ["Flat/Apartment", "Independent/Builder Floor", "Independent House/Villa", "Residential Land", "1 RK/Studio Apartment", "Farm House", "Serviced Apartments", "Other"];
-  // selectedItems: { [key: string]: boolean } = {};
+
 
   @ViewChild('dropdownMenu') dropdownMenu!: ElementRef;
   dropdownHTML: any;
 
-  constructor(private cdr: ChangeDetectorRef,private router: Router) { }
+  constructor(private cdr: ChangeDetectorRef, private router: Router) { }
   ngOnInit(): void {
     console.log("HomeComponent Initialized");
   }
@@ -48,15 +46,9 @@ export class HomeComponent implements AfterViewChecked, OnInit, OnDestroy {
 
   // Define different dropdown lists for each category
   residentialItems: string[] = ["Flat/Apartment", "Independent/Builder Floor", "Independent House/Villa", "Residential Land", "1 RK/Studio Apartment", "Farm House", "Serviced Apartments", "Other"];
-  commercialItems: string[] = ['Ready to move offices', 'Shops & Retail', 'Agricultural/Farm Land','Warehouse','Factory & Manufacturing','Bare shell offices','Commercial/Inst. Land','Industrial Land/Plots','Cold Storage','Hotel/Resorts','Others'];
-  investmentOptions: string[] = [
-    'Pre Leased Spaces',
-    'Food Courts',
-    'Restaurants',
-    'Multiplexes',
-    'SCO Plots'
-  ];
-  newLaunchItems: string[] = ['Upcoming Apartments', 'New Villas', 'Plotted Developments'];
+  commercialItems: string[] = ['Ready to move offices', 'Shops & Retail', 'Agricultural/Farm Land', 'Warehouse', 'Factory & Manufacturing', 'Bare shell offices', 'Commercial/Inst. Land', 'Industrial Land/Plots', 'Cold Storage', 'Hotel/Resorts', 'Others'];
+
+ 
 
   dropdownItems: string[] = this.residentialItems; // Default dropdown items
   selectedItems: { [key: string]: boolean } = {};
@@ -74,9 +66,7 @@ export class HomeComponent implements AfterViewChecked, OnInit, OnDestroy {
       this.dropdownItems = this.residentialItems;
     } else if (category === 'Commercial') {
       this.dropdownItems = this.commercialItems;
-    } else if (category === 'New Launch') {
-      this.dropdownItems = this.newLaunchItems;
-    }
+    } 
   }
 
   clearSelection() {
