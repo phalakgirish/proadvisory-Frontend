@@ -1,0 +1,178 @@
+<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="left-filter">
+        <div class="categories">
+            <p>Categories</p>
+            <p style="font-size: 17px;margin-top: 25px;">All Types</p>
+            <div style="font-size: 17px;margin-top: 8px; color: gray;margin-left:100px;cursor: pointer;">
+                <a>1 RK</a><br>
+                <a>1 BHK</a><br>
+                <a>2 BHK</a><br>
+                <a>3 BHK</a><br>
+                <a>Shop</a><br>
+                <a>Others</a>
+            </div>
+
+            <p style="font-size: 20px;margin-top: 25px;">Budget</p>
+            <div class="slider-container">
+                <!-- Labels Above Thumbs -->
+                <div class="slider-labels">
+                    <div class="label-box" [style.left.%]="getLabelPosition(minValue)">
+                        {{ formatValue(minValue) }}
+                    </div>
+                    <div class="label-box2" [style.left.%]="getLabelPosition(maxValue)">
+                        {{ formatValue(maxValue) }}
+                    </div>
+                </div>
+
+                <!-- Range Sliders -->
+                <div class="range-slider">
+                    <input type="range" [(ngModel)]="minValue" (input)="updateRange()" min="0" max="1000" step="10">
+                    <input type="range" [(ngModel)]="maxValue" (input)="updateRange()" min="0" max="1000" step="10">
+                </div>
+            </div>
+
+            <!-- Budget Inputs -->
+            <div class="budget-inputs">
+                <input type="text" placeholder="Min Budget" [(ngModel)]="minValue" (input)="updateSlider()">
+                <input type="text" placeholder="Max Budget" [(ngModel)]="maxValue" (input)="updateSlider()">
+            </div>
+
+
+
+
+
+            <p style="font-size: 20px;margin-top: 25px;">Locations</p>
+            <div class="select">
+                <select name="" id="">
+                    <option value="">Select</option>
+                </select>
+            </div>
+
+            <div style="display: flex;">
+                <p style="font-size: 20px; margin-top: 25px; margin-right: -25px;">Amenities</p>
+                <button class="clear-selection" (click)="clearSelection()">Clear</button>
+            </div>
+
+            <div class="button-container">
+                <button class="toggle-btn" *ngFor="let button of buttons"
+                    [ngClass]="{'selected': selectedButtons.includes(button)}" (click)="toggleSelection(button)">
+                    {{ button }}
+                </button>
+            </div>
+
+            <p style="font-size: 15px;margin-top: 8px; color: blue; cursor: pointer;">+ 4 more</p>
+            <p style="font-size: 20px; margin-top: 25px; ">Property Types</p>
+            <div class="checkbox-container">
+                <label *ngFor="let item of checkboxes">
+                    <input type="checkbox" />
+                    {{ item }}
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="main-content">
+        <div class="toggle-container">
+            <button class="toggle-btn-cont" [ngClass]="{'active': viewMode === 'list'}" (click)="setView('list')">
+                <span class="icon">☰</span> List
+            </button>
+            <button class="toggle-btn-cont" [ngClass]="{'active': viewMode === 'grid'}" (click)="setView('grid')">
+                <span class="icon">▦</span> Grid
+            </button>
+        </div>
+
+
+
+
+        <div class="sort-filter-container">
+            <!-- Sort By Section -->
+            <div class="sort-section">
+                <span class="sort-label">Sort by:</span>
+                <a href="#" class="sort-option">Most relevant</a>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <label class="filter-btn">
+                    <input type="checkbox">
+                    <span class="icon">✔️</span> Verified Listings
+                </label>
+
+                <label class="filter-btn">
+                    <input type="checkbox">
+                    <span class="icon">✔️</span>New Launch
+                </label>
+            </div>
+        </div>
+
+
+        <div [ngClass]="{'grid-view': viewMode === 'grid', 'list-view': viewMode === 'list'}">
+            <div class="box" *ngFor="let item of items">
+                <div class="box4-3">
+                    <button class="featured-btn" *ngIf="item.featured">Featured</button>
+                    <button class="favorite-btn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+
+                <img [src]="item.image" [alt]="item.title">
+
+                <div class="box-text">
+                    <div style="display: flex;">
+                        <h5>{{ item.title }}</h5>
+                        <!-- <div class="verified-badge">
+                                <i class="fa-solid fa-shield"></i> Verified
+                            </div> -->
+                    </div>
+                    <p>{{ item.description }}</p>
+
+                    <div class="bhk-container">
+                        <div class="bhk-row">
+                            <span *ngFor="let bhk of item.bhkOptions">{{ bhk }}</span>
+                        </div>
+
+                        <div class="price-row">
+                            <span *ngFor="let price of item.priceOptions">{{ price }}</span>
+                        </div>
+
+                        <div class="bed-bath-parking">
+                            <button class="bed-button">
+                                <i class="fa-solid fa-bed"></i> {{ item.beds }} Bed
+                            </button>
+                            <button class="bath-button">
+                                <i class="fa-solid fa-bath"></i> {{ item.baths }} Bath
+                            </button>
+                            <button class="parking-button" *ngIf="item.hasParking">
+                                <i class="fa-solid fa-square-parking"></i> Parking
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a [routerLink]="['/detailedpage', item.id]">
+                            <button class="view-details-btn">View more details</button>
+                        </a>
+
+
+
+                        <button class="whatsapp-button">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="more-prop-container">
+    <button (click)="loadMoreItems()" class="more-prop-btn">View More Properties</button>
+</div>
+<app-footer></app-footer>

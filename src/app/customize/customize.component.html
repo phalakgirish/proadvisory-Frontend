@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<div class="property-text">
+    <p>Find Properties That Fit Your Lifestyle<br>
+        with <span style="color: red;">ProAdvizar</span>
+    </p>
+</div>
+
+
+<div style="display: flex;">
+    <div class="form-container">
+        <p class="form-txt1">Customize your property</p>
+        <p class="form-txt2">Add Basic Details</p>
+
+        <p class="form-txt2">You're looking to...</p>
+        <button class="toggle-btn" *ngFor="let button of buttons"
+            [ngClass]="{'selected': selectedButtons.includes(button)}" (click)="toggleSelection(button)">
+            {{ button }}
+        </button>
+
+        <p class="form-txt3">And it's a....</p>
+        <button class="toggle-btn2" *ngFor="let button of buttons1"
+            [ngClass]="{'selected': selectedButtons1.includes(button)}" (click)="toggleSelection1(button)">
+            {{ button }}
+        </button>
+
+        <p class="form-txt3" style="color: red;">4 more &#x25BE;</p>
+
+        <p class="form-txt3" style="margin-top: 10px;">Number of Bedrooms</p>
+        <button class="toggle-btn3" *ngFor="let button of buttons2"
+            [ngClass]="{'selected': selectedButtons1.includes(button)}" (click)="toggleSelection2(button)">
+            {{ button }}
+        </button>
+
+        <p class="form-txt3" style="margin-top: 10px;">Select Your Location</p>
+        <!-- Select Button -->
+        <button class="toggle-btn4" (click)="toggleDropdown()">
+            {{ selectedButtons3.length > 0 ? selectedButtons3.join(', ') : '---Select---' }} &#x25BE;
+        </button>
+
+        <!-- Dropdown Options (Visible when isDropdownOpen is true) -->
+        <div class="dropdown-menu" *ngIf="isDropdownOpen">
+            <label *ngFor="let location of locations">
+                <input type="checkbox" [checked]="selectedButtons3.includes(location)"
+                    (change)="toggleSelection3(location)">
+                {{ location }}
+            </label>
+        </div>
+
+
+        <p style="margin-top: 25px; margin-left: 26px;">Your Contact Details</p>
+
+        <div class="input-container">
+            <input type="text" class="input-field" placeholder="Enter Name">
+            <input type="tel" class="input-field" placeholder="Enter Phone Number">
+        </div>
+
+        <p style="margin-left: 26px;margin-top: 10px;font-size: 14px;">Are you a registered User?<a href=""
+                style="color: red; text-decoration: none;">
+                Login</a></p>
+
+        <button class="submit-btn">Submit</button>
+
+    </div>
+
+    <img src="cust-img.png" alt="" height="500px" style="margin-top: 10%; margin-left: 40px;">
+</div>
+
+    <app-footer></app-footer>

@@ -1,0 +1,641 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'calibri';
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* Prevents horizontal scroll */
+}
+
+.left-filter{
+    margin-left: 100px;
+}
+.categories p {
+    margin-top: 200px;
+    font-size: 20px;
+    font-weight: 600px;
+    margin-left: 100px;
+}
+
+.slider-container {
+    position: relative;
+    width: 260px;
+    /* Increased width for proper label spacing */
+    text-align: center;
+    margin-top: 50px;
+    margin-left: -30px;
+}
+
+.slider-labels {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; /* Allows gap to work */
+    gap: 80px; /* Now it will create spacing */
+    margin-bottom: 10px;
+    margin-left: 130px;
+}
+
+
+
+.label-box {
+    background-color: #0b2447;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    position: absolute;
+    top: -30px;
+    width: 40px;
+    height: 30px;
+}
+
+.label-box2 {
+    background-color: #0b2447;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    position: absolute;
+    top: -30px;
+    width: 70px;
+    margin-left: -50px;
+}
+
+#minLabel {
+    left: 0;
+}
+
+#maxLabel {
+    right: 0;
+}
+
+.range-slider {
+    position: relative;
+    width: 100%;
+    height: 30px;
+}
+
+input[type="range"] {
+    position: absolute;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    pointer-events: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 6px;
+    background: #007bff;
+    border-radius: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    margin-left: 0px;
+    margin-top: -6px;
+    /* Align thumb correctly */
+}
+
+/* Ensure the right slider thumb is not overflowing */
+#maxRange {
+    direction: rtl;
+    /* Fixes right thumb positioning */
+}
+
+.budget-inputs {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: -100px;
+}
+
+.budget-inputs input {
+    width: 140px;
+    height: 40px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    color: gray;
+    outline: none;
+    background-color: white;
+    box-shadow: none;
+}
+
+.budget-inputs input::placeholder {
+    color: lightgray;
+}
+
+
+.select select{
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    width: 290px;
+    height: 30px;
+    text-align: left;
+    margin-left: 100px;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap to the next row */
+    justify-content: left; /* Centers buttons */
+    gap: 0px; /* Ensures spacing between buttons */
+    max-width: 300px; /* Adjust width to fit two buttons per row */
+    margin-left: 100px;
+    margin-right: auto;
+}
+
+.toggle-btn {
+    min-width: 100px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid rgb(143, 143, 143);
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    white-space: nowrap;
+    margin-top: 20px;
+}
+
+/* Selected Button */
+.toggle-btn.selected {
+    background-color: #FF5733;
+    color: white;
+    border-color: #FF5733;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.clear-selection{
+    border: none;
+    color: red;
+    cursor: pointer;
+    width: 450px;
+    margin-top: 24px;
+    background: none;
+}
+.checkbox-container {
+    display: flex;
+    flex-direction: column; /* Stack checkboxes vertically */
+    gap: 10px; /* Space between items */
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: rgb(107, 114, 128); /* Light grayish-blue text */
+    font-weight: 400;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* .left-filter{
+    position: fixed;
+    overflow-y: auto; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    height: 100vh;
+} */
+
+.toggle-container {
+    display: flex;
+    background: #f0f0f0;
+    padding: 5px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-left: 670px;
+    margin-bottom: 10px;
+}
+
+.toggle-btn-cont {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #777;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+.toggle-btn-cont.active {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: black;
+    font-weight: bold;
+}
+
+.toggle-btn-cont .icon {
+    font-size: 18px;
+}
+
+.list-view .list-item {
+    padding: 10px;
+    border: 1px solid black;
+    margin: 5px 0;
+}
+
+.grid-view {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.grid-view .grid-item {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.sort-filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: white;
+    font-family: Arial, sans-serif;
+    width: 820px;
+    margin-left: 10px;
+}
+
+.sort-section {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.sort-label {
+    font-weight: bold;
+    color: #0b0b0b;
+}
+
+.sort-option {
+    color: #777;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    height: 50px;
+}
+
+.filter-btn input {
+    display: none;
+}
+
+.filter-btn .icon {
+    color: green;
+    font-size: 14px;
+    display: none;
+}
+
+.filter-btn input:checked + .icon {
+    display: inline;
+}
+
+.filter-btn:hover {
+    background: #f5f5f5;
+}
+
+
+/* containers */
+/* Individual boxes */
+.box {
+    position: relative;
+    min-width: 220px;
+    height: 420px;
+    width: 400px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid rgb(171, 165, 165);
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-left: 10px;
+    flex-shrink: 0;
+    /* Prevents shrinking */
+}
+
+.box img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    object-position: top;
+    /* Ensures the image starts from the top */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.box-text {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    /* Centers the text in the lower half */
+    padding: 10px;
+    text-align: center;
+}
+
+.box-text p {
+    font-size: 14px;
+    font-weight: lighter;
+    margin-top: 5px;
+}
+
+.box-text span {
+    font-size: 13px;
+    font-weight: lighter;
+}
+
+.bhk-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.bhk-row {
+    display: flex;
+    justify-content: start;
+    gap: 70px;
+    width: 100%;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    width: 65%;
+}
+
+.bhk-row span {
+    font-size: 15px;
+    white-space: nowrap;
+    /* Prevents wrapping */
+}
+
+.price-row span {
+    font-size: 15px;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.bed-bath-parking{
+    display: flex;
+    gap: 5px;
+    padding: 3px;
+}
+
+.bed-bath-parking button{
+    background-color: rgb(205, 205, 205);
+    border: none;
+    border-radius: 20px;
+    width: 80px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.bed-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;  /* Space between image and text */
+    background-color: rgb(205, 205, 205);
+    border: none;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.bed-icon {
+    height: 80px; /* Adjust icon size */
+    width: 80px;
+}
+
+
+
+.view-details-btn{
+    background-color: white;
+    border: 1px solid black;
+    width: 290px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.view-details-btn:hover{
+    background-color: black;
+    color: white;
+}
+
+.whatsapp-button{
+    background-color: rgb(0, 151, 0);
+   height: 40px;
+   width: 60px;
+    border-radius: 3px;
+    margin-top: 10px;
+    border: none;
+    margin-left: 5px;
+    font-size: 20px;
+    color: white;
+}
+
+.whatsapp-button:hover{
+    background-color: rgb(7, 103, 7);
+}
+
+
+/* Featured button on top-left */
+.featured-btn {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    background-color: #1ebb72; /* Green color */
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    padding: 3px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Heart Button (Positioned on Image) */
+.favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8); /* Light background */
+    border: none;
+    font-size: 14px; 
+    cursor: pointer;
+    padding: 5px 8px;
+    border-radius: 50%;
+    transition: color 0.3s ease, background 0.3s ease;
+}
+
+.favorite-btn i {
+    font-size: 14px;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+/* Fill heart with red color on hover */
+.favorite-btn:hover i {
+    color: red;
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; /* Makes it a solid heart */
+    content: "\f004"; /* Unicode for solid heart */
+}
+
+.container {
+    display: flex;
+    align-items: flex-start; /* Align items at the top */
+    gap: 20px; /* Space between filter and content */
+}
+
+.main-content {
+    flex-grow: 1; /* Take remaining space */
+    width: calc(100% - 270px); /* Adjust width accordingly */
+    margin-top: 130px;
+    margin-left: -150px;
+}
+
+.more-prop-container {
+    display: flex;
+    justify-content: right; /* Center horizontally */
+    align-items: center;
+    margin-right: 400px;
+    margin-top: 50px;
+}
+
+.more-prop-btn {
+    background-color: white;
+    border: 1px solid black;
+    padding: 7px;
+    font-size: 15px;
+    width: 200px;
+    height: 45px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+.more-prop-btn:hover{
+    background-color: black;
+    color: white;
+}
+
+
+
+.verified-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #141c3a;
+    background-color: white;
+    padding: 5px 10px;
+    margin-top: -10px;
+    margin-left: 100px;
+}
+.verified-badge-olympia{
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #141c3a;
+    background-color: white;
+    padding: 5px 10px;
+    margin-top: -10px;
+    margin-left: 230px;
+}
+
+.verified-badge i, .verified-badge-olympia i{
+    color: #3a9d5d;
+    margin-right: 5px;
+}
+
+.box-text h5{
+   font-weight: 600;
+}
+
+/* .list-view .box, .grid-view .box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.grid-view {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.list-view {
+    display: flex;
+    flex-direction: column;
+} */

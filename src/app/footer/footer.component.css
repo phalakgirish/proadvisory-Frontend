@@ -1,0 +1,89 @@
+/* Main Footer Flex Container */
+.main-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: black;
+    height: 350px;
+    padding: 20px;
+    color: white;
+    padding-left: 230px;
+    padding-top: 50px;
+}
+
+/* Left Section: Logo, Description, and Social Icons */
+.footer-info {
+    /* flex: 1; */
+    max-width: 100%;
+}
+
+.footer-info p {
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* Social Icons */
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-networks {
+    font-size: 13px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 50%;
+    padding: 10px;
+    width: 32px;
+    height: 32px;
+    margin-right: 7px;
+    margin-top: 20px;
+    gap: 7px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.social-networks:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Right Section: Footer Links & Address */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex: 2;
+    gap: 40px;
+    padding-top: 20px;
+}
+/* Quick Links */
+.quick-links {
+    margin-left: 400px;
+    font-size: 14px;
+}
+
+.ulclass {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.ulclass li {
+    margin-bottom: 5px;
+}
+
+.ulclass a {
+    color: white;
+    text-decoration: none;
+}
+
+.ulclass a:hover {
+    color: gray;
+}
+
+/* Address & Contact */
+.address-contact {
+    flex: 8;
+    margin-top: -5px;
+}

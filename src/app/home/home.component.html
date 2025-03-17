@@ -1,0 +1,673 @@
+
+    <div class="bgimg">
+        <app-navbar></app-navbar>
+
+        <div class="text">
+            Navi Mumbai #1 Real Estate Platform<br> to <b>Buy & Sell!</b>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cont-text">
+            <a (click)="selectCategory('All Residential')">All Residential</a>
+            <a (click)="selectCategory('Commercial')">Commercial</a>
+            <a>New Launch</a>
+            <hr>
+        </div>
+
+
+
+        <div class="cont-text2-container">
+            <!-- Dropdown Trigger -->
+            <p class="cont-text2" id="dropdownTrigger" (click)="toggleDropdown($event)">
+                {{ selectedCategory }}
+                <img src="down-arrow.png" alt="Icon" class="arrow-icon">
+            </p>
+
+
+
+            <!-- Vertical line -->
+            <hr class="vertical-line">
+
+            <div class="search-container">
+                <img src="search.png" alt="Search Icon" class="search-icon">
+                <input type="text" class="search-box" placeholder="Search">
+
+                <div class="location-cont">
+                    <img src="location.png" alt="Location Icon" class="location-icon">
+                    <button class="search-btn">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ✅ Separate Dropdown Container -->
+    <div class="dropdown-container" *ngIf="isDropdownVisible" #dropdownMenu>
+        <button class="clear-selection" (click)="clearSelection()">Clear</button>
+
+        <div class="grid-container">
+            <div *ngFor="let item of dropdownItems; let i = index" class="grid-item">
+                <input type="checkbox" [id]="'item' + i" [(ngModel)]="selectedItems[item]" />
+                <label [for]="'item' + i">{{ item }}</label>
+            </div>
+        </div>
+
+        <!-- Some Text Below the List -->
+        <p class="info-text">Looking for commercial properties ? <a href=""
+                style="color: red; text-decoration: none;">Click Here</a></p>
+        <hr>
+
+        <!-- Buttons Below the Text -->
+        <div class="button-container">
+            <button class="btn1">Budget<img src="down-arrow.png" alt="Icon" class="arrow-icon"></button>
+            <button class="btn1">Bedroom<img src="down-arrow.png" alt="Icon" class="arrow-icon"></button>
+            <button class="btn3">Construction Status<img src="down-arrow.png" alt="Icon" class="arrow-icon"></button>
+        </div>
+    </div>
+
+
+
+    <div class="searches-cont">
+        <p class="searches">Recent Searches</p>
+        <button class="bhk">
+            <img src="recent.png" alt="Recent Icon" class="recent-icon">1 BHK in Panvel
+        </button>
+    </div>
+
+    <h3 class="apts">Apartments, Villas and more</h3>
+    <p class="apts1">in Navi Mumbai</p>
+
+    <div class="scrolling-container">
+        <div class="scroll-wrapper">
+            <!-- Use *ngFor to repeat the property boxes dynamically -->
+            <div class="box" *ngFor="let item of items">
+                <div class="box4-3">
+                    <button class="featured-btn1">Featured</button>
+                    <button class="favorite-btn1">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <img [src]="item.bigImage" alt="House Image">
+                <div class="box-text">
+                    <h5>{{ item.name }}</h5>
+                    <p>{{ item.description }}</p>
+                    <div class="bhk-container">
+                        <div class="bhk-row">
+                            <span *ngFor="let bhk of item.bhk">{{ bhk }}</span>
+                        </div>
+                        <div class="price-row">
+                            <span>{{ item.priceRange }}</span>
+                        </div>
+                    </div>
+                    <button class="view-details-btn" (click)="viewDetails(item.id)">
+                        View more details
+                    </button>
+                </div>
+            </div>
+
+            <!-- repeat -->
+            <div class="box" *ngFor="let item of items">
+                <div class="box4-3">
+                    <button class="featured-btn1">Featured</button>
+                    <button class="favorite-btn1">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <img [src]="item.bigImage" alt="House Image">
+                <div class="box-text">
+                    <h5>{{ item.name }}</h5>
+                    <p>{{ item.description }}</p>
+                    <div class="bhk-container">
+                        <div class="bhk-row">
+                            <span *ngFor="let bhk of item.bhk">{{ bhk }}</span>
+                        </div>
+                        <div class="price-row">
+                            <span>{{ item.priceRange }}</span>
+                        </div>
+                    </div>
+                    <button class="view-details-btn" (click)="viewDetails(item.id)">
+                        View more details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="banner">
+        <img src="./banner.png" alt="Banner" width="100%">
+        <div class="text1">
+            <span class="highlight">PRO ADVIZAR</span><br>
+            Navi Mumbai #1 Real Estate<br> Platform
+            to <b>Buy & Sell!</b>
+        </div>
+    </div>
+
+    <div class="suggestions">
+        <h4 class="txt1">Pro Advizar Suggestions</h4>
+        <p class="txt2">in Navi Mumbai</p>
+    </div>
+
+    <div class="container4">
+        <!-- Box 1 -->
+        <div class="box4">
+
+
+            <!-- Image container with favorite button inside -->
+            <div class="box4-3">
+                <img src="img1.png" alt="Box Image">
+                <button class="featured-btn">Featured</button>
+                <button class="favorite-btn">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+
+            <div class="extra-wrapper">
+                <div class="circle">
+                    <img src="circle1.png" alt="Profile Image">
+                </div>
+                <div class="extra-container">
+                    <div class="property-details">
+                        <h6>Tulip Wadhwa Wise City</h6>
+                        <p class="prop-details-p1">1 BHK Apartment in Ulwe, Navi Mumbai</p>
+                        <span style="margin-bottom: 30px; font-weight: bold; font-size: 14px;">₹15 - 25 L</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+        <!-- Box 2 -->
+        <div class="box4">
+            <div class="box4-3">
+                <img src="img2.png" alt="Box Image">
+                <button class="featured-btn">Featured</button>
+                <button class="favorite-btn">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+
+            <div class="extra-wrapper">
+                <div class="circle">
+                    <img src="circle2.png" alt="Profile Image" height="45px" width="45px"
+                        style="border-radius: 16px; margin-top: 10px; margin-left: 3px;">
+                </div>
+                <div class="extra-container">
+                    <div class="property-details">
+                        <h6>Balaji Symphony</h6>
+                        <p class="prop-details-p1">1 BHK Apartment in Ulwe, Navi Mumbai</p>
+                        <span style="margin-bottom: 30px; font-weight: bold; font-size: 14px;">₹15 - 25 L</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Box 3 -->
+        <div class="box4">
+            <div class="box4-3">
+                <img src="img3.png" alt="Box Image">
+                <button class="featured-btn">Featured</button>
+                <button class="favorite-btn">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <div class="extra-wrapper">
+                <div class="circle">
+                    <img src="circle3.png" alt="" height="45px" width="45px"
+                        style="border-radius: 15px; margin-top: 8px; margin-left: 3px;">
+                </div>
+                <div class="extra-container">
+                    <div class="property-details">
+                        <h6>Marathon</h6>
+                        <p class="prop-details-p1">1 BHK Apartment in Ulwe, Navi Mumbai</p>
+                        <span style="margin-bottom: 30px; font-weight: bold; font-size: 14px;">₹15 - 25 L</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Box 4 -->
+        <div class="box4">
+            <div class="box4-3">
+                <img src="img4.jpg" alt="Box Image">
+                <button class="featured-btn">Featured</button>
+                <button class="favorite-btn">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <div class="extra-wrapper">
+                <div class="circle">
+                    <img src="circle4.png" alt="" height="45px" width="45px"
+                        style="border-radius: 15px; margin-top: 8px;">
+                </div>
+                <div class="extra-container">
+                    <div class="property-details">
+                        <h6>Olympia</h6>
+                        <p class="prop-details-p1">1 BHK Apartment in Ulwe, Navi Mumbai</p>
+                        <span style="margin-bottom: 30px; font-weight: bold; font-size: 14px;">₹15 - 25 L</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="suggestions1">
+        <div class="text-content">
+            <h4 class="txt3">Insights</h4>
+            <p class="txt4">Go from browsing to buying</p>
+        </div>
+        <button class="view-all">View All Insights</button>
+    </div>
+
+    <div class="container-wrapper3">
+        <div class="box-container">
+            <div class="box3">
+                <img src="3-1.png" alt="Image" />
+            </div>
+            <div class="news-container">
+                <button class="news-button">News</button>
+                <p class="news-text">March 2023</p>
+            </div>
+            <p style="font-size: 20px; margin-top: 20px; margin-right: 70px;">Genuine Reviews of Navi Mumbai</p>
+            <p style="text-align: justify; margin-top: 20px; font-size: 16; margin-left: 5px;">Lorem ipsum dolor sit
+                amet consectetur. Dolor congue faucibus nibh at diam quisque. Augue.</p>
+            <p style="font-size: 18; margin-top: 20px; margin-right: 275px;">Read More ››</p>
+        </div>
+
+        <div class="box-container">
+            <div class="box3">
+                <img src="3-2.png" alt="Image" />
+            </div>
+            <div class="news-container">
+                <button class="news-button">News</button>
+                <p class="news-text">March 2023</p>
+            </div>
+            <p style="font-size: 20px; margin-top: 20px; margin-right: 95px;">Property Rates in Navi Mumbai</p>
+            <p style="text-align: justify; margin-top: 20px; font-size: 16;margin-left: 5px;">Lorem ipsum dolor sit
+                amet
+                consectetur. Dolor congue faucibus nibh at diam quisque. Augue.</p>
+            <p style="font-size: 18; margin-top: 20px; margin-right: 275px;">Read More ››</p>
+        </div>
+
+        <div class="box-container">
+            <div class="box3">
+                <img src="3-3.png" alt="Image" />
+            </div>
+            <div class="news-container">
+                <button class="news-button">News</button>
+                <p class="news-text">March 2023</p>
+            </div>
+            <p style="font-size: 20px; margin-top: 20px; margin-right: 245px;">Check Articles</p>
+            <p style="text-align: justify; margin-top: 20px; font-size: 16;margin-left: 5px;">Lorem ipsum dolor sit
+                amet
+                consectetur. Dolor congue faucibus nibh at diam quisque. Augue.</p>
+            <p style="font-size: 18; margin-top: 20px; margin-right: 275px;">Read More ››</p>
+        </div>
+    </div>
+
+    <div class="suggestions">
+        <h4 class="txt1">Find the Neighborhood For You</h4>
+        <p class="txt2" style="margin-bottom: 30px">The neighborhoods best suited to your lifestyle, and the agents
+            who<br> know them best.</p>
+    </div>
+
+    <div class="container6">
+        <div class="left">
+            <div class="box6 box61">
+                <img src="6-1.png" alt="Image 1">
+            </div>
+            <div class="box6 box62">
+                <img src="6-2.png" alt="Image 2">
+            </div>
+        </div>
+
+        <div class="box6 box63">
+            <img src="6-3.png" alt="Image 3">
+        </div>
+
+        <div class="bottom-section">
+            <div class="box6 box64">
+                <img src="6-4.png" alt="Image 4">
+            </div>
+            <div class="down">
+                <div class="box6 box65">
+                    <img src="6-5.png" alt="Image 5">
+                </div>
+                <div class="box6 box67">
+                    <img src="6-6.png" alt="Image 6">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ongoing-cont">
+        <div class="suggestions">
+            <h4 class="txt1">Pro Advisor Exclusives</h4>
+            <p class="txt2" style="margin-bottom: 30px">Be the first to browse exclusive listings before they hit
+                the
+                market.</p>
+        </div>
+
+        <select name="" id="" class="ongoing">Ongoing
+            <option value="">Ongoing</option>
+        </select>
+    </div>
+
+    <div class="layout-wrapper">
+        <!-- Small Boxes (Left Side) -->
+        <div class="small-boxes-container">
+
+            <!-- Property Listing 1 -->
+            <div class="property-box">
+                <div class="box4-3">
+                    <button class="featured-btn1">Featured</button>
+                    <button class="favorite-btn1">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <img src="cont-1.png" alt="House Image">
+                <div class="box-text">
+                    <h5>Tulip Wadhwa Wise City</h5>
+                    <div class="verified-badge-small-boxes">
+                        <i class="fa-solid fa-shield"></i> Verified
+                    </div>
+                    <p>1 BHK Apartment in Ulwe, Navi Mumbai</p>
+                    <div class="bhk-container">
+                        <div class="bhk-row">
+                            <span>1 BHK</span>
+                            <span>2 BHK</span>
+                        </div>
+                        <div class="price-row">
+                            <span>₹15 - 25 L</span>
+                            <span>₹25 - 30 L</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-details-btn">View more details</button>
+            </div>
+
+            <!-- Additional Property Boxes -->
+            <div class="property-box">
+                <div class="box4-3">
+                    <button class="featured-btn1">Featured</button>
+                    <button class="favorite-btn1">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <img src="cont-2.png" alt="House Image">
+                <div class="box-text">
+                    <h5>Balaji Symphony</h5>
+                    <p>2 BHK Apartment in Karwar, Navi Mumbai</p>
+                    <div class="bhk-container">
+                        <div class="bhk-row">
+                            <span>1 BHK</span>
+                            <span>2 BHK</span>
+                        </div>
+                        <div class="price-row">
+                            <span>₹11 - 25 L</span>
+                            <span>₹25 - 40 L</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-details-btn">View more details</button>
+            </div>
+
+
+            <div class="property-box">
+                <div class="box4-3">
+                    <button class="featured-btn1">Featured</button>
+                    <button class="favorite-btn1">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <img src="cont-3.png" alt="House Image">
+                <div class="box-text">
+                    <h5>Marathon</h5>
+                    <p>2 BHK Apartment in Ulwe, Navi Mumbai</p>
+                    <div class="bhk-container">
+                        <div class="bhk-row">
+                            <span>1 BHK</span>
+                            <span>2 BHK</span>
+                        </div>
+                        <div class="price-row">
+                            <span>₹16 - 26 L</span>
+                            <span>₹26 - 30 L</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-details-btn">View more details</button>
+            </div>
+
+            <!-- box4 -->
+            <div class="property-box">
+                <div class="box4-3">
+                    <button class="featured-btn1">Featured</button>
+                    <button class="favorite-btn1">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <img src="cont-4.png" alt="House Image">
+                <div class="box-text">
+                    <h5>Olympia</h5>
+                    <div class="verified-badge-olympia-small-boxes">
+                        <i class="fa-solid fa-shield"></i> Verified
+                    </div>
+
+                    <p>2 BHK Apartment in Ulwe, Navi Mumbai</p>
+                    <div class="bhk-container">
+                        <div class="bhk-row">
+                            <span>1 BHK</span>
+                            <span>2 BHK</span>
+                        </div>
+                        <div class="price-row">
+                            <span>₹16 - 26 L</span>
+                            <span>₹26 - 30 L</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-details-btn">View more details</button>
+            </div>
+
+            <!-- box1 -->
+            <div class="property-box">
+                <div class="box4-3">
+                    <button class="featured-btn1">Featured</button>
+                    <button class="favorite-btn1">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <img src="cont-1.png" alt="House Image">
+                <div class="box-text">
+                    <h5>Tulip Wadhwa Wise City</h5>
+                    <div class="verified-badge-small-boxes">
+                        <i class="fa-solid fa-shield"></i> Verified
+                    </div>
+                    <p>1 BHK Apartment in Ulwe, Navi Mumbai</p>
+                    <div class="bhk-container">
+                        <div class="bhk-row">
+                            <span>1 BHK</span>
+                            <span>2 BHK</span>
+                        </div>
+                        <div class="price-row">
+                            <span>₹15 - 25 L</span>
+                            <span>₹25 - 30 L</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-details-btn">View more details</button>
+            </div>
+
+            <!-- box2 -->
+            <div class="property-box">
+                <div class="box4-3">
+                    <button class="featured-btn1">Featured</button>
+                    <button class="favorite-btn1">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <img src="cont-2.png" alt="House Image">
+                <div class="box-text">
+                    <h5>Balaji Symphony</h5>
+                    <p>2 BHK Aartment in Karwar, Navi Mumbai</p>
+                    <div class="bhk-container">
+                        <div class="bhk-row">
+                            <span>1 BHK</span>
+                            <span>2 BHK</span>
+                        </div>
+                        <div class="price-row">
+                            <span>₹11 - 25 L</span>
+                            <span>₹25 - 40 L</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-details-btn">View more details</button>
+            </div>
+        </div>
+
+        <!-- Large Box (Right Side) -->
+        <div class="featured-property-box">
+            <img src="big-cont.png" alt="">
+            <div class="image-text">PROADVIZAR</div>
+            <div class="image-text1">Pro Advizar's Luxury Collection</div>
+            <div class="image-text2">Step into refined elegance with Pro Advizar's<br> most coveted properties,
+                presented<br> exclusively by Provident.</div>
+            <button class="learn-more-btn">Learn More</button>
+        </div>
+    </div>
+
+    <div class="more-prop-container">
+        <button class="more-prop-btn">View More Properties</button>
+    </div>
+
+    <div class="suggestions">
+        <p class="txt-prop">Recently Viewed Property</p>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 40px;">
+        <div class="box">
+            <div class="box4-3">
+                <button class="featured-btn1">Featured</button>
+                <button class="favorite-btn1">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <img src="cont-1.png" alt="House Image">
+
+            <div class="box-text">
+                <div style="display: flex;">
+                    <h5>Tulip Wadhwa Wise City</h5>
+                    <div class="verified-badge">
+                        <i class="fa-solid fa-shield"></i> Verified
+                    </div>
+                </div>
+
+                <p>1 BHK Apartment in Ulwe, Navi Mumbai</p>
+                <div class="bhk-container">
+                    <div class="bhk-row">
+                        <span>1 BHK</span>
+                        <span>2 BHK</span>
+                    </div>
+                    <div class="price-row">
+                        <span>₹15 - 25 L</span>
+                        <span>₹25 - 30 L</span>
+                    </div>
+                </div>
+            </div>
+            <button class="view-details-btn">View more details</button>
+        </div>
+
+        <!-- box2 -->
+        <div class="box">
+            <div class="box4-3">
+                <button class="featured-btn1">Featured</button>
+                <button class="favorite-btn1">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <img src="cont-2.png" alt="House Image">
+            <div class="box-text">
+                <h5>Balaji Symphony</h5>
+                <p>2 BHK Apartment in Karwar, Navi Mumbai</p>
+                <div class="bhk-container">
+                    <div class="bhk-row">
+                        <span>1 BHK</span>
+                        <span>2 BHK</span>
+                    </div>
+                    <div class="price-row">
+                        <span>₹11 - 25 L</span>
+                        <span>₹25 - 40 L</span>
+                    </div>
+                </div>
+            </div>
+            <button class="view-details-btn">View more details</button>
+        </div>
+
+        <!-- box3 -->
+        <div class="box">
+            <div class="box4-3">
+                <button class="featured-btn1">Featured</button>
+                <button class="favorite-btn1">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <img src="cont-3.png" alt="House Image">
+            <div class="box-text">
+                <h5>Marathon</h5>
+                <p>2 BHK Apartment in Ulwe, Navi Mumbai</p>
+                <div class="bhk-container">
+                    <div class="bhk-row">
+                        <span>1 BHK</span>
+                        <span>2 BHK</span>
+                    </div>
+                    <div class="price-row">
+                        <span>₹16 - 26 L</span>
+                        <span>₹26 - 30 L</span>
+                    </div>
+                </div>
+            </div>
+            <button class="view-details-btn">View more details</button>
+        </div>
+
+        <!-- box4 -->
+        <div class="box">
+            <div class="box4-3">
+                <button class="featured-btn1">Featured</button>
+                <button class="favorite-btn1">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <img src="cont-4.png" alt="House Image">
+            <div class="box-text">
+                <div style="display: flex;">
+                    <h5>Olympia</h5>
+                    <div class="verified-badge-olympia">
+                        <i class="fa-solid fa-shield"></i> Verified
+                    </div>
+                </div>
+                <p>2 BHK Apartment in Ulwe, Navi Mumbai</p>
+                <div class="bhk-container">
+                    <div class="bhk-row">
+                        <span>1 BHK</span>
+                        <span>2 BHK</span>
+                    </div>
+                    <div class="price-row">
+                        <span>₹16 - 26 L</span>
+                        <span>₹26 - 30 L</span>
+                    </div>
+                </div>
+            </div>
+            <button class="view-details-btn">View more details</button>
+        </div>
+    </div>
+
+
+    <app-footer></app-footer>
+
+
