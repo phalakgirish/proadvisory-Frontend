@@ -35,15 +35,16 @@ export class DetailedpageComponent implements AfterViewInit, OnInit {
       image: 'cont-1.png',
       bigImage: 'big-cont1img.png',
       smallImage1: 'small-cont1.png',
-      smallImage2: 'small-cont2.png'
+      smallImage2: 'small-cont2.png',
+      title:'1BHk'
     },
     {
       id: 2,
       location: 'Karwar, Navi Mumbai',
       propertyTitle: 'Balaji Symphony',
       constructionStatus: 'Ready to Move',
-      priceRange: '₹11 - 25 L',
-      apartmentType: '1,2 BHK Apartment',
+      priceRange: '₹15 - 30 L',
+      apartmentType: '1 BHK Apartment',
       pricePerSqft: '50,000',
       beds: 2, baths: 2,
       carpetArea: 780, bedrooms: 2, balcony: '1 Balcony',
@@ -60,8 +61,8 @@ export class DetailedpageComponent implements AfterViewInit, OnInit {
       location: 'Ulwe, Navi Mumbai',
       propertyTitle: 'Marathon',
       constructionStatus: 'Ready to Move',
-      priceRange: '₹11 - 25 L',
-      apartmentType: '1,2 BHK Apartment',
+      priceRange: '₹11 - 27 L',
+      apartmentType: '2 BHK Apartment',
       pricePerSqft: '50,000',
       beds: 4, baths: 2,
       carpetArea: 780, bedrooms: 2, balcony: '1 Balcony',
@@ -79,7 +80,7 @@ export class DetailedpageComponent implements AfterViewInit, OnInit {
       propertyTitle: 'The Highlands',
       constructionStatus: 'Ready to Move',
       priceRange: '₹11 - 25 L',
-      apartmentType: '1,2 BHK Apartment',
+      apartmentType: '3 BHK Apartment',
       pricePerSqft: '50,000',
       beds: 4, baths: 2,
       carpetArea: 780, bedrooms: 2, balcony: '1 Balcony',
@@ -88,6 +89,42 @@ export class DetailedpageComponent implements AfterViewInit, OnInit {
       possessionDate: '31-12-2024', propertyFloor: '9 out of 10',
       image: 'cont-2.png',
       bigImage: 'cont-5.png',
+      smallImage1: 'small-cont1.png',
+      smallImage2: 'small-cont2.png'
+    },
+    {
+      id: 5,
+      location: 'Ulwe, Navi Mumbai',
+      propertyTitle: 'Olympia',
+      constructionStatus: 'Ready to Move',
+      priceRange: '₹11 - 25 L',
+      apartmentType: '4 BHK Apartment',
+      pricePerSqft: '50,000',
+      beds: 4, baths: 2,
+      carpetArea: 800, bedrooms: 2, balcony: '1 Balcony',
+      parking: 'Covered Parking', addedDate: 'January 2024',
+      propertyId: '67890', reraNumber: '123456789',
+      possessionDate: '31-12-2024', propertyFloor: '9 out of 10',
+      image: 'cont-2.png',
+      bigImage: 'olympia.png',
+      smallImage1: 'small-cont1.png',
+      smallImage2: 'small-cont2.png'
+    },
+    {
+      id: 6,
+      location: 'Ulwe, Navi Mumbai',
+      propertyTitle: 'Paradise',
+      constructionStatus: 'Ready to Move',
+      priceRange: '₹11 - 25 L',
+      apartmentType: '5 BHK Apartment',
+      pricePerSqft: '50,000',
+      beds: 4, baths: 2,
+      carpetArea: 780, bedrooms: 2, balcony: '1 Balcony',
+      parking: 'Covered Parking', addedDate: 'January 2024',
+      propertyId: '67890', reraNumber: '123456789',
+      possessionDate: '31-12-2024', propertyFloor: '9 out of 10',
+      image: 'cont-2.png',
+      bigImage: 'cont-1.png',
       smallImage1: 'small-cont1.png',
       smallImage2: 'small-cont2.png'
     }
@@ -111,6 +148,8 @@ export class DetailedpageComponent implements AfterViewInit, OnInit {
         console.error("No matching property found!");
       }
     });
+    this.generateCards();
+
   }
 
 
@@ -126,13 +165,17 @@ export class DetailedpageComponent implements AfterViewInit, OnInit {
   }
 
 
-  cards = [
-    { title: '2 BHK Apartment', area: '874.03-1010 sqft', price: '₹ 1.47 - 1.56 Cr + Charges' },
-    { title: '3 BHK Apartment', area: '874.03-1010 sqft', price: '₹ 2.47 - 3.56 Cr + Charges' },
-    { title: '4 BHK Apartment', area: '874.03-1010 sqft', price: '₹ 3.47 - 5.56 Cr' },
-    { title: '5 BHK Apartment', area: '1000-1200 sqft', price: '₹ 4.50 - 6.00 Cr' }
-  ];
+  cards: { title: string; area: string; price: string }[] = [];
 
+
+
+  generateCards() {
+    this.cards = this.items.map(item => ({
+      title: item.apartmentType,
+      area: `${item.carpetArea} sqft`,
+      price: `${item.priceRange}+Charges`
+    }));
+  }
 
   ngAfterViewInit() {
     console.log("Slider initialized:", this.slider.nativeElement);
@@ -186,25 +229,36 @@ export class DetailedpageComponent implements AfterViewInit, OnInit {
   }
 
 
-
-  isPhotoModalOpen = false;  // Initially hidden
+  isPhotoModalOpen = false;
   photos = [
     'small-cont1.png',
+    'small-cont2.png',
     'small-cont1.png',
     'small-cont2.png'
   ];
+  currentIndex = 1; // Start from the second image (middle one)
 
   togglePhotos() {
-    this.isPhotoModalOpen = !this.isPhotoModalOpen;  // Toggle modal visibility
-
+    this.isPhotoModalOpen = !this.isPhotoModalOpen;
 
     if (this.isPhotoModalOpen) {
       document.body.style.overflow = 'hidden';  // Disable scrolling
     } else {
-      document.body.style.overflow = 'auto';    // Enable scrolling when closed
+      document.body.style.overflow = 'auto';  // Enable scrolling when closed
     }
   }
 
+  prevPhoto() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    }
+  }
+
+  nextPhoto() {
+    if (this.currentIndex < this.photos.length - 1) {
+      this.currentIndex++;
+    }
+  }
 
 
 

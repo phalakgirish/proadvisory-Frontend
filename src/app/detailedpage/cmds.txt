@@ -1,0 +1,13 @@
+git clone <git URL>
+cd <dir>
+git branch development
+git checkout development
+
+
+
+git pull origin development
+git add .
+git status
+git commit -m "Msg"
+git push origin [branch_name]
+git branch
