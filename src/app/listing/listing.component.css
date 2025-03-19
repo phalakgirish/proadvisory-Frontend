@@ -358,8 +358,8 @@ input[type="checkbox"] {
 .box {
     position: relative;
     min-width: 220px;
-    height: 420px;
-    width: 400px;
+    height: 425px;
+    width: 392px;
     color: black;
     display: flex;
     align-items: center;
@@ -593,49 +593,47 @@ input[type="checkbox"] {
 .verified-badge {
     display: inline-flex;
     align-items: center;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     color: #141c3a;
     background-color: white;
     padding: 5px 10px;
     margin-top: -10px;
-    margin-left: 100px;
-}
-.verified-badge-olympia{
-    display: inline-flex;
-    align-items: center;
-    font-size: 12px;
-    font-weight: bold;
-    color: #141c3a;
-    background-color: white;
-    padding: 5px 10px;
-    margin-top: -10px;
-    margin-left: 230px;
+    margin-left: 90px;
 }
 
-.verified-badge i, .verified-badge-olympia i{
+.custom-margin {
+    margin-left: 220px !important; /* Apply different margin for item 5 */
+}
+.verified-badge i{
     color: #3a9d5d;
     margin-right: 5px;
+}
+
+.new-launch-badge {
+    color: black;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 180px;
+    font-size: 14px;
+    margin-top: -10px;
+}
+.custom-margin-newlaunch{
+    margin-left: 110px;
 }
 
 .box-text h5{
    font-weight: 600;
 }
 
-/* .list-view .box, .grid-view .box {
-    border: 1px solid #ccc;
+
+
+.bhk-message {
     padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
+    font-size: 40px;
+    margin-bottom: 10px;
+    font-size: 700;
+    margin-top: 200px;
+    margin-left: 200px;
 }
-
-.grid-view {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-.list-view {
-    display: flex;
-    flex-direction: column;
-} */

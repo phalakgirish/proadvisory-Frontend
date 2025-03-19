@@ -1,515 +1,478 @@
 <app-navbar></app-navbar>
 
 
-    <div class="center-wrapper">
-        <div class="main-container">
-            <div class="big-container">
-                <div *ngFor="let item of items">
-                    <img [src]="item.bigImage" alt="Big Image">
-                </div>
+<div class="center-wrapper">
+    <div class="main-container">
+        <div class="big-container">
+            <div *ngIf="selectedItem">
+                <img [src]="selectedItem?.bigImage" alt="Big Image"
+                    style="width: 700px; height: 600px; border-radius: 10px;">
 
             </div>
 
-            <div>
-                <div class="small-container">
-                    <div *ngFor="let item of items">
-                        <img [src]="item.smallImage1" alt="Small Image1">
-                    </div>
-                </div>
-
-                <div class="small-container1">
-                    <div *ngFor="let item of items">
-                        <img [src]="item.smallImage2" alt="Small Image2">
-                    </div>
-                    <button class="view-photos-btn" (click)="togglePhotos()">
-                        <img src="view-photos.png" alt="Icon" class="icon"> View photos ({{ photos.length }})
-                    </button>
-
-                    <!-- Photo Popup Modal -->
-                    <div class="photo-modal" *ngIf="isPhotoModalOpen">
-                        <div class="photo-modal-content">
-                            <span class="close-btn" (click)="togglePhotos()">&times;</span>
-                            <div class="photo-gallery">
-                                <img *ngFor="let photo of photos" [src]="photo" alt="Property Photo">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-
-    <div class="center-wrapper2">
-        <div class="main-container2">
-
-            <div class="big-container2">
-
-                <div style="display: flex; align-items: center;">
-                    <div class="tulip-container">
-                        <div class="tulip-txt">
-                            <div *ngFor="let item of items">
-                                <p><b>{{ item.propertyTitle }}</b></p>
-                            </div>
-
-                        </div>
-                        <!-- <input type="text" [(ngModel)]="propertyTitle" placeholder="Update Title"> -->
-                    </div>
-
-                    <div style="display: flex;gap: 10px;">
-                        <button class="favorite-btn">
-                            <i class="far fa-heart"></i>
-                        </button>
-                        <button class="share-btn">
-                            <i class="fa-solid fa-arrow-up-from-bracket"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div *ngFor="let item of items" class="property-details">
-                    <div class="details">
-                        <p><b>{{ item.beds }}</b> beds</p>
-                        <p><b>{{ item.baths }}</b> baths</p>
-                        <p><b>{{ item.sqft }}</b> sqft</p>
-                    </div>
-                    <p class="location">{{ item.location }}</p>
-                </div>
-
-
-                <div class="btns">
-                    <button class="buttons">For Sale</button>
-                    <button class="buttons2"><i class="fas fa-shield-alt"></i>
-                        Verified Listing</button>
-                    <button class="buttons3"><i class="fa-solid fa-check"></i>RERA<i
-                            class="fa-solid fa-circle-info"></i></button>
-                    <button class="buttons4">25+ Amenities</button>
-                </div>
-
-                <div class="construction-cont" *ngFor="let item of items">
-                    <p style="font-size: 15px; font-weight: 300; padding-top: 20px;">CONSTRUCTION STATUS</p>
-                    <p style="font-size: 25px;">{{ item.constructionStatus }}</p>
-                </div>
-
-
-                <div style="display: flex; justify-content: left;">
-                    <div style="display: flex; align-items: center; justify-content: center;">
-                        <div class="icon-container">
-                            <i class="fa-solid fa-tag"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="price-container" *ngFor="let item of items">
-                    <p class="price">₹ <b>{{ item.priceRange }}</b> <span class="tax">+ Gov Tax</span></p>
-                    <p class="price-range">PRICE RANGE</p>
-                    <p class="apartment-type">{{ item.apartmentType }}</p>
-                </div>
-
-
-                <div class="slider-container">
-                    <!-- Left Arrow -->
-                    <button class="arrow arrow-left" (click)="scrollLeft()">&#8592;</button>
-
-                    <!-- Cards Wrapper -->
-                    <div class="cards-wrapper" #slider>
-                        <div class="card" *ngFor="let card of cards">
-                            <div class="card-header">{{ card.title }}</div>
-                            <div class="card-content">
-                                <p><strong>Carpet Area:</strong><br> {{ card.area }}</p>
-                                <p class="price">{{ card.price }}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Arrow -->
-                    <button class="arrow arrow-right" (click)="scrollRight()">&#8594;</button>
-                </div>
-
-
-
-
-                <div class="info-container" *ngFor="let item of items">
-                    <img src="dot-icon.png" alt="Icon">
-                    <div class="text-content">
-                        <p style="color: rgb(159, 159, 159); margin: 0;">Price/sqft</p>
-                        <p style="font-size: 17px; font-weight: 600; margin: 0;">{{ item.pricePerSqft }}</p>
-                    </div>
-                </div>
-
-
-                <div class="tabs">
-                    <div class="tab"
-                        *ngFor="let tab of ['description', 'overview', 'amenities', 'floor-plans', 'property-info']"
-                        [class.active]="activeTab === tab" (click)="setActiveTab(tab)">
-                        {{ tab | titlecase }}
-                    </div>
-                </div>
-
-                <div *ngIf="activeTab === 'description'" class="tab-content">
-                    <h3>Description</h3>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry'sstandard dummy text ever since the 1500sLorem Ipsum is simply
-                        dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500sLorem Ipsum is simply dummy text of the printing
-                        and Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                        <span *ngIf="isExpanded">
-                            It has survived not only five centuries, but also the leap into electronic typesetting.
-                        </span>
-                    </p>
-                    <span class="readmore" (click)="toggleReadMore()">
-                        {{ isExpanded ? 'Read less ▲' : 'Read more ▼' }}
-                    </span>
-                </div>
-
-                <div *ngIf="activeTab === 'overview'" class="tab-content">
-                    <h3>Overview</h3>
-                    <p>Overview content goes here...</p>
-                </div>
-
-                <div *ngIf="activeTab === 'amenities'" class="tab-content">
-                    <h3>Amenities</h3>
-                    <p>Amenities content goes here...</p>
-                </div>
-
-                <div *ngIf="activeTab === 'floor-plans'" class="tab-content">
-                    <h3>Floor Plans</h3>
-                    <p>Floor plans content goes here...</p>
-                </div>
-
-                <div *ngIf="activeTab === 'property-info'" class="tab-content">
-                    <h3>Property Info</h3>
-                    <p>Property info content goes here...</p>
-                </div>
-
-                <hr style="margin-top: 10px;">
-                <p style="font-size: 20px; font-weight: 600;">Property Overview</p>
-
-                <!-- property-details.component.html -->
-                <div class="property-details">
-                    <div class="details-grid" *ngIf="selectedItem">
-                        <div class="detail-item"><strong>Carpet Area</strong><br>{{ selectedItem.carpetArea }} sq.ft
-                        </div>
-                        <div class="detail-item"><strong>Bedrooms</strong><br>{{ selectedItem.bedrooms }}</div>
-                        <div class="detail-item"><strong>Balcony</strong><br>{{ selectedItem.balcony }}</div>
-                        <div class="detail-item"><strong>Bathrooms</strong><br>{{ selectedItem.bathrooms }}</div>
-                        <div class="detail-item"><strong>Parking</strong><br>{{ selectedItem.parking }}</div>
-                        <div class="detail-item"><strong>Added</strong><br>{{ selectedItem.addedDate }}</div>
-                        <div class="detail-item"><strong>Property ID</strong><br>{{ selectedItem.propertyId }}</div>
-                        <div class="detail-item"><strong>Rera Number</strong><br>{{ selectedItem.reraNumber }}</div>
-                        <div class="detail-item"><strong>Possession Date</strong><br>{{ selectedItem.possessionDate }}
-                        </div>
-                        <div class="detail-item"><strong>Property Floor</strong><br>{{ selectedItem.propertyFloor }}
-                        </div>
-                    </div>
-
-
-                    <div style="display: flex; gap: 6px;">
-                        <button class="custom-btn">
-                            <i class="fa-solid fa-share-nodes"></i> Share
-                        </button>
-                        <button class="custom-btn">
-                            <i class="fa-solid fa-heart"></i> Save
-                        </button>
-                    </div>
-
-                </div>
-
-                <p style="font-size: 20px; font-weight: 600;">Amenities</p>
-                <div class="amenities">
-                    <div class="amenity"><img src="car.png" alt="Car Parking"><br>Car Parking</div>
-                    <div class="amenity"><img src="lift.png" alt="Lift"><br>Lift</div>
-                    <div class="amenity"><img src="power backup.png" alt="Power Backup"><br>Power<br> Backup</div>
-                    <div class="amenity"><img src="gymnasium.png" alt="Gymnasium"><br>Gymnasium</div>
-                    <div class="amenity"><img src="park.png" alt="Park"><br>Park</div>
-                </div>
-
-                <div class="property-overview-cont">
-                    <div style="text-align: left;">
-                        <p style="font-size: 20px; font-weight: 600; margin-bottom: 10px;">Floor Plans</p>
-                    </div>
-
-                    <div class="floor-button-container">
-                        <button class="toggle-btn" *ngFor="let button of buttons"
-                            [ngClass]="{'selected': selectedFloor === button.label}" (click)="toggleSelection(button)">
-                            <img [src]="button.icon" alt="icon" class="btn-icon">
-                            {{ button.label }}
-                        </button>
-                    </div>
-
-                    <!-- Show Image Below When a Button is Clicked -->
-                    <div *ngIf="selectedFloor">
-                        <img [src]="getImage()" *ngIf="getImage()" alt="Floor Plan" class="floor-plan-image">
-                    </div>
-                </div>
-            
-
-                <p style="font-size: 20px; font-weight: 600;">Property Information</p>
-                <img src="map.png" alt="" width="700px" height="auto">
-
-
-                <p style="font-size: 20px; font-weight: 600;margin-top: 30px;">Similar Projects</p>
-
-
-                <div class="center-cont">
-                    <div class="box-wrapper">
-                        <div class="box">
-                            <div class="box4-3">
-                                <button class="favorite-btn1">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                            </div>
-                            <img src="cont-1.png" alt="House Image">
-
-                            <div class="box-text">
-                                <div style="display: flex;">
-                                    <h5>Tulip Wadhwa Wise City</h5>
-                                    <!-- <div class="verified-badge">
-                                        <i class="fa-solid fa-shield"></i> Verified
-                                    </div> -->
-                                </div>
-                                <p>1 BHK Apartment in Ulwe, Navi Mumbai</p>
-                                <div class="bhk-container">
-                                    <div class="bhk-row">
-                                        <span>1 BHK</span>
-                                        <span>2 BHK</span>
-                                    </div>
-                                    <div class="price-row">
-                                        <span>₹15 - 25 L</span>
-                                        <span>₹25 - 30 L</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="view-details-btn">View more details</button>
-                        </div>
-
-                        <!-- box2 -->
-                        <div class="box">
-                            <div class="box4-3">
-                                <button class="favorite-btn1">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                            </div>
-                            <img src="cont-2.png" alt="House Image">
-                            <div class="box-text">
-                                <h5>Balaji Symphony</h5>
-                                <p>2 BHK Apartment in Karwar, Navi Mumbai</p>
-                                <div class="bhk-container">
-                                    <div class="bhk-row">
-                                        <span>1 BHK</span>
-                                        <span>2 BHK</span>
-                                    </div>
-                                    <div class="price-row">
-                                        <span>₹11 - 25 L</span>
-                                        <span>₹25 - 40 L</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="view-details-btn">View more details</button>
-                        </div>
-
-                        <!-- box3 -->
-                        <div class="box">
-                            <div class="box4-3">
-                                <button class="favorite-btn1">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                            </div>
-                            <img src="cont-3.png" alt="House Image">
-                            <div class="box-text">
-                                <h5>Marathon</h5>
-                                <p>2 BHK Apartment in Ulwe, Navi Mumbai</p>
-                                <div class="bhk-container">
-                                    <div class="bhk-row">
-                                        <span>1 BHK</span>
-                                        <span>2 BHK</span>
-                                    </div>
-                                    <div class="price-row">
-                                        <span>₹16 - 26 L</span>
-                                        <span>₹26 - 30 L</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="view-details-btn">View more details</button>
-                        </div>
-
-                        <!-- box4 -->
-                        <div class="box">
-                            <div class="box4-3">
-                                <button class="favorite-btn1">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                            </div>
-                            <img src="cont-4.png" alt="House Image">
-                            <div class="box-text">
-                                <div style="display: flex;">
-                                    <h5>Olympia</h5>
-                                    <div class="verified-badge-olympia">
-                                        <i class="fa-solid fa-shield"></i> Verified
-                                    </div>
-                                </div>
-                                <p>2 BHK Apartment in Ulwe, Navi Mumbai</p>
-                                <div class="bhk-container">
-                                    <div class="bhk-row">
-                                        <span>1 BHK</span>
-                                        <span>2 BHK</span>
-                                    </div>
-                                    <div class="price-row">
-                                        <span>₹16 - 26 L</span>
-                                        <span>₹26 - 30 L</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="view-details-btn">View more details</button>
-                        </div>
-
-                    </div>
-
-                    <!-- main footer -->
-                    <div style="border: 1px solid black; width: 1525px;
-                    height: 300px; align-items: center; justify-content: center; margin-left: -240px;">
-                        <div class="main-footer">
-                            <!-- Left Section: Logo, Description & Social Icons -->
-                            <div class="footer-info">
-                                <img src="logo-last.png" alt="" width="200px" height="60px">
-                                <p>We at ProAdvizar offer a wide range of Residential & Commercial real<br>
-                                    estate services across Navi Mumbai.</p>
-                                <div class="social-icons">
-                                    <span><i class="fa-brands fa-facebook-f social-networks"></i></span>
-                                    <span><i class="fa-brands fa-instagram social-networks"></i></span>
-                                    <span><i class="fa-brands fa-linkedin social-networks"></i></span>
-                                    <span><i class="fa-brands fa-x-twitter social-networks"></i></span>
-                                    <span><i class="fa-brands fa-youtube social-networks"></i></span>
-                                </div>
-                            </div>
-
-                            <!-- Right Section: Quick Links & Address -->
-                            <div class="footer-container">
-                                <!-- Quick Links Section -->
-                                <div class="quick-links">
-                                    <span><b>QUICK LINKS</b></span>
-                                    <ul class="ulclass">
-                                        <li><a routerLink="/home">Home</a></li>
-                                        <li><a href="">About</a></li>
-                                        <li><a href="">Projects</a></li>
-                                        <li><a href="">Insights</a></li>
-                                        <li><a href="">Contact</a></li>
-                                        <li><a href="">Terms & Conditions</a></li>
-                                        <li><a href="">Privacy & Policy</a></li>
-                                    </ul>
-                                </div>
-
-                                <!-- Address & Contact Section -->
-                                <div class="address-contact">
-                                    <span><b>ADDRESS</b></span>
-                                    <p style="margin-top: 20px; margin-bottom: 20px; font-size: 14px;">ABC, Office No-4,
-                                        Ground
-                                        Floor,<br>
-                                        Sector-17, Behind Income Tax Office,<br>
-                                        Khanda Colony, Panvel Navi<br>
-                                        Mumbai-410210.</p>
-
-                                    <span><b>CONTACT</b></span>
-                                    <p style="margin-top: 5px; font-size: 14px;">+91 8883688890</p>
-                                    <p style="margin-top: -11px; font-size: 14px;">info&#64;proadvizarrealestate.in</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-        <!-- right side 3 containers -->
 
         <div>
-            <div class="small-container2">
-                <div style="display: flex; align-items: center; gap: 10px; margin-left: 20px; margin-top: 10px;">
-                    <img src="nakshatra.png" alt="" height="90px">
-                    <div style="display: flex; flex-direction: column; align-items: flex-start;">
-                        <p style="font-size: 22px; font-weight: 1000; margin-bottom: 0;">Nakshathra</p>
-                        <p style="color: rgb(167, 166, 166); margin: 0;">Pro Advizar</p>
-                        <p style="color: rgb(167, 166, 166); margin: 0;">Real Estate</p>
+            <div class="small-container">
+                <div *ngIf="selectedItem">
+                    <img [src]="selectedItem.smallImage1" alt="Small Image1">
+                </div>
+            </div>
+
+            <div class="small-container1">
+                <div *ngIf="selectedItem">
+                    <img [src]="selectedItem.smallImage2" alt="Small Image2">
+                </div>
+                <button class="view-photos-btn" (click)="togglePhotos()">
+                    <img src="view-photos.png" alt="Icon" class="icon"> View photos ({{ photos.length }})
+                </button>
+
+                <!-- Photo Modal -->
+                <div *ngIf="isPhotoModalOpen" class="photo-modal">
+                    <button class="nav-button left" (click)="prevPhoto()"
+                        [disabled]="currentIndex === 0">&#10094;</button>
+
+                    <div class="photo-gallery">
+                        <img *ngIf="currentIndex > 0" [src]="photos[currentIndex - 1]" class="side-photo">
+                        <img [src]="photos[currentIndex]" class="main-photo">
+                        <img *ngIf="currentIndex < photos.length - 1" [src]="photos[currentIndex + 1]"
+                            class="side-photo">
+                    </div>
+
+                    <button class="nav-button right" (click)="nextPhoto()"
+                        [disabled]="currentIndex === photos.length - 1">&#10095;</button>
+
+                    <button class="close-button" (click)="togglePhotos()">✖</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="center-wrapper2">
+    <div class="main-container2">
+
+        <div class="big-container2">
+
+            <div style="display: flex; align-items: center;">
+                <div class="tulip-container">
+                    <div class="tulip-txt">
+                        <div *ngIf="selectedItem">
+                            <p><b>{{ selectedItem.propertyTitle }}</b></p>
+                        </div>
+
+                    </div>
+                    <!-- <input type="text" [(ngModel)]="propertyTitle" placeholder="Update Title"> -->
+                </div>
+
+                <div style="display: flex;gap: 10px;">
+                    <button class="favorite-btn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="share-btn">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div *ngIf="selectedItem" class="property-details">
+                <div class="details">
+                    <p><b>{{ selectedItem.beds }}</b> bed</p>
+                    <p><b>{{ selectedItem.baths }}</b> baths</p>
+                    <p><b>{{ selectedItem.sqft }}</b> sqft</p>
+                </div>
+                <p class="location">{{ selectedItem.location }}</p>
+            </div>
+
+
+            <div class="btns">
+                <button class="buttons">For Sale</button>
+                <button class="buttons2"><i class="fas fa-shield-alt"></i>
+                    Verified Listing</button>
+                <button class="buttons3"><i class="fa-solid fa-check"></i>RERA<i
+                        class="fa-solid fa-circle-info"></i></button>
+                <button class="buttons4">25+ Amenities</button>
+            </div>
+
+            <div class="construction-cont" *ngIf="selectedItem">
+                <p style="font-size: 15px; font-weight: 300; padding-top: 20px;">CONSTRUCTION STATUS</p>
+                <p style="font-size: 25px;">{{ selectedItem.constructionStatus }}</p>
+            </div>
+
+
+            <div style="display: flex; justify-content: left;">
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-tag"></i>
                     </div>
                 </div>
+            </div>
 
-                <div class="button-container">
-                    <!-- Call Button -->
-                    <button class="call-btn">
-                        <i class="fa-solid fa-phone"></i> Call
-                    </button>
+            <div class="price-container" *ngIf="selectedItem">
+                <p class="price">₹ <b>{{ selectedItem.priceRange }}</b> <span class="tax">+ Gov Tax</span></p>
+                <p class="price-range">PRICE RANGE</p>
+                <p class="apartment-type">{{ selectedItem.apartmentType }}</p>
+            </div>
 
-                    <!-- Email Button -->
-                    <button class="email-btn">
-                        <i class="fa-solid fa-envelope"></i> Email
-                    </button>
 
-                    <!-- WhatsApp Button -->
-                    <button class="whatsapp-btn" (click)="sendWhatsAppMessage()">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </button>
+            <div class="slider-container">
+                <!-- Left Arrow -->
+                <button class="arrow arrow-left" (click)="scrollLeft()">&#8592;</button>
+
+                <!-- Cards Wrapper -->
+                <div class="cards-wrapper" #slider>
+                    <div class="card" *ngFor="let card of cards">
+                      <div class="card-header">{{ card.title }}</div>
+                      <div class="card-content">
+                        <p><strong>Carpet Area:</strong><br> {{ card.area }}</p>
+                        <p class="price">{{ card.price }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+
+                <!-- Right Arrow -->
+                <button class="arrow arrow-right" (click)="scrollRight()">&#8594;</button>
+            </div>
+
+
+
+
+            <div class="info-container" *ngIf="selectedItem">
+                <img src="dot-icon.png" alt="Icon">
+                <div class="text-content">
+                    <p style="color: rgb(159, 159, 159); margin: 0;">Price/sqft</p>
+                    <p style="font-size: 17px; font-weight: 600; margin: 0;">{{ selectedItem?.pricePerSqft }}</p>
+                </div>
+            </div>
+
+
+            <div class="tabs">
+                <div class="tab"
+                    *ngFor="let tab of ['description', 'overview', 'amenities', 'floor-plans', 'property-info']"
+                    [class.active]="activeTab === tab" (click)="setActiveTab(tab)">
+                    {{ tab | titlecase }}
+                </div>
+            </div>
+
+            <div *ngIf="activeTab === 'description'" class="tab-content">
+                <h3>Description</h3>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                    has been the industry'sstandard dummy text ever since the 1500sLorem Ipsum is simply
+                    dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500sLorem Ipsum is simply dummy text of the printing
+                    and Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                    <span *ngIf="isExpanded">
+                        It has survived not only five centuries, but also the leap into electronic typesetting.
+                    </span>
+                </p>
+                <span class="readmore" (click)="toggleReadMore()">
+                    {{ isExpanded ? 'Read less ▲' : 'Read more ▼' }}
+                </span>
+            </div>
+
+            <div *ngIf="activeTab === 'overview'" class="tab-content">
+                <h3>Overview</h3>
+                <p>Overview content goes here...</p>
+            </div>
+
+            <div *ngIf="activeTab === 'amenities'" class="tab-content">
+                <h3>Amenities</h3>
+                <p>Amenities content goes here...</p>
+            </div>
+
+            <div *ngIf="activeTab === 'floor-plans'" class="tab-content">
+                <h3>Floor Plans</h3>
+                <p>Floor plans content goes here...</p>
+            </div>
+
+            <div *ngIf="activeTab === 'property-info'" class="tab-content">
+                <h3>Property Info</h3>
+                <p>Property info content goes here...</p>
+            </div>
+
+            <hr style="margin-top: 10px;">
+            <p style="font-size: 20px; font-weight: 600;">Property Overview</p>
+
+            <!-- property-details.component.html -->
+            <div class="property-details" *ngIf="selectedItem">
+                <div class="details-grid">
+                    <div class="detail-item"><strong>Carpet Area</strong><br>{{ selectedItem?.carpetArea }} sq.ft</div>
+                    <div class="detail-item"><strong>Bedrooms</strong><br>{{ selectedItem?.bedrooms }}</div>
+                    <div class="detail-item"><strong>Balcony</strong><br>{{ selectedItem?.balcony }}</div>
+                    <div class="detail-item"><strong>Bathrooms</strong><br>{{ selectedItem?.bathrooms }}</div>
+                    <div class="detail-item"><strong>Parking</strong><br>{{ selectedItem?.parking }}</div>
+                    <div class="detail-item"><strong>Added</strong><br>{{ selectedItem?.addedDate }}</div>
+                    <div class="detail-item"><strong>Property ID</strong><br>{{ selectedItem?.propertyId }}</div>
+                    <div class="detail-item"><strong>Rera Number</strong><br>{{ selectedItem?.reraNumber }}</div>
+                    <div class="detail-item"><strong>Possession Date</strong><br>{{ selectedItem?.possessionDate }}
+                    </div>
+                    <div class="detail-item"><strong>Property Floor</strong><br>{{ selectedItem?.propertyFloor }}</div>
 
                 </div>
-                <hr style="margin-top: 8px;">
 
-                <div class="view-all">
-                    <a routerLink="/listing" style="text-decoration: none;">
-                    <p style="margin-right: 5px;">View all properties</p></a>
-                    <i class="fa-solid fa-angle-right" style="margin-bottom: 11px;"></i>
+
+
+                <div style="display: flex; gap: 6px;">
+                    <button class="custom-btn">
+                        <i class="fa-solid fa-share-nodes"></i> Share
+                    </button>
+                    <button class="custom-btn">
+                        <i class="fa-solid fa-heart"></i> Save
+                    </button>
                 </div>
 
             </div>
 
-            <div class="small-container22">Offers Popup or blinker</div>
+            <p style="font-size: 20px; font-weight: 600;">Amenities</p>
+            <div class="amenities">
+                <div class="amenity"><img src="car.png" alt="Car Parking"><br>Car Parking</div>
+                <div class="amenity"><img src="lift.png" alt="Lift"><br>Lift</div>
+                <div class="amenity"><img src="power backup.png" alt="Power Backup"><br>Power<br> Backup</div>
+                <div class="amenity"><img src="gymnasium.png" alt="Gymnasium"><br>Gymnasium</div>
+                <div class="amenity"><img src="park.png" alt="Park"><br>Park</div>
+            </div>
 
-            <div class="small-container222">Why you should buy<br><b>Kalpataru Vivant?</b>
-                <div class="kalpataru-cont">
-
-                    <div style="display: flex;">
-                        <div class="icon">
-                            <div class="diamond"></div>
-                        </div>
-                        <p style="margin-top: 7px;"><span
-                                style="font-size: 15px; font-weight: 600; font-style: italic; margin-left: 10px;">NEW
-                                LAUNCH</span>
-                            <span style="font-size: 15px; margin-left: 5px;">BENEFITS</span>
-                        </p>
-                    </div>
-
-                    <div class="bullets">
-                        <p>Best Prices</p>
-                        <p>&bull; Unit of choice</p>
-                        <p>&bull; Easy Payment Plans</p>
-                    </div>
+            <div class="property-overview-cont">
+                <div style="text-align: left;">
+                    <p style="font-size: 20px; font-weight: 600; margin-bottom: 10px;">Floor Plans</p>
                 </div>
 
-                <div class="bullets2">
-                    <ul class="bullets2">
-                        <li style="margin-top: 10px;">Just 5 minutes to Western Express Highway</li>
-                        <li>C.S.M. International Airport located just 5.4km away</li>
-                        <li>Panoramic podium amenity views from deck</li>
-
-                        <div style="display: flex;">
-                            <li>Established social ecosystem<br> with pro...</li>
-                            <p style="margin-left: 20px; color: red;">+2 more</p>
-                        </div>
-                    </ul>
+                <div class="floor-button-container">
+                    <button class="toggle-btn" *ngFor="let button of buttons"
+                        [ngClass]="{'selected': selectedFloor === button.label}" (click)="toggleSelection(button)">
+                        <img [src]="button.icon" alt="icon" class="btn-icon">
+                        {{ button.label }}
+                    </button>
                 </div>
 
-                <div style="display: flex; align-items: center; justify-content: center;">
-                    <button class="brochure">Brochure</button>
+                <!-- Show Image Below When a Button is Clicked -->
+                <div *ngIf="selectedFloor">
+                    <img [src]="getImage()" *ngIf="getImage()" alt="Floor Plan" class="floor-plan-image">
+                </div>
+            </div>
+
+
+            <p style="font-size: 20px; font-weight: 600;">Property Information</p>
+            <img src="map.png" alt="" width="700px" height="auto">
+
+
+            <p style="font-size: 20px; font-weight: 600;margin-top: 30px;">Similar Projects</p>
+
+
+            <div class="center-cont">
+                <div class="box-wrapper">
+                    <div class="box">
+                        <div class="box4-3">
+                            <button class="favorite-btn1">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <img src="cont-1.png" alt="House Image">
+
+                        <div class="box-text">
+                            <div style="display: flex;">
+                                <h5>Tulip Wadhwa Wise City</h5>
+                                <!-- <div class="verified-badge">
+                                        <i class="fa-solid fa-shield"></i> Verified
+                                    </div> -->
+                            </div>
+                            <p>1 BHK Apartment in Ulwe, Navi Mumbai</p>
+                            <div class="bhk-container">
+                                <div class="bhk-row">
+                                    <span>1 BHK</span>
+                                    <span>2 BHK</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>₹15 - 25 L</span>
+                                    <span>₹25 - 30 L</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="view-details-btn">View more details</button>
+                    </div>
+
+                    <!-- box2 -->
+                    <div class="box">
+                        <div class="box4-3">
+                            <button class="favorite-btn1">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <img src="cont-2.png" alt="House Image">
+                        <div class="box-text">
+                            <h5>Balaji Symphony</h5>
+                            <p>2 BHK Apartment in Karwar, Navi Mumbai</p>
+                            <div class="bhk-container">
+                                <div class="bhk-row">
+                                    <span>1 BHK</span>
+                                    <span>2 BHK</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>₹11 - 25 L</span>
+                                    <span>₹25 - 40 L</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="view-details-btn">View more details</button>
+                    </div>
+
+                    <!-- box3 -->
+                    <div class="box">
+                        <div class="box4-3">
+                            <button class="favorite-btn1">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <img src="cont-3.png" alt="House Image">
+                        <div class="box-text">
+                            <h5>Marathon</h5>
+                            <p>2 BHK Apartment in Ulwe, Navi Mumbai</p>
+                            <div class="bhk-container">
+                                <div class="bhk-row">
+                                    <span>1 BHK</span>
+                                    <span>2 BHK</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>₹16 - 26 L</span>
+                                    <span>₹26 - 30 L</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="view-details-btn">View more details</button>
+                    </div>
+
+                    <!-- box4 -->
+                    <div class="box">
+                        <div class="box4-3">
+                            <button class="favorite-btn1">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <img src="cont-4.png" alt="House Image">
+                        <div class="box-text">
+                            <div style="display: flex;">
+                                <h5>Olympia</h5>
+                                <div class="verified-badge-olympia">
+                                    <i class="fa-solid fa-shield"></i> Verified
+                                </div>
+                            </div>
+                            <p>2 BHK Apartment in Ulwe, Navi Mumbai</p>
+                            <div class="bhk-container">
+                                <div class="bhk-row">
+                                    <span>1 BHK</span>
+                                    <span>2 BHK</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>₹16 - 26 L</span>
+                                    <span>₹26 - 30 L</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="view-details-btn">View more details</button>
+                    </div>
+
+                </div>
+
+                <div style="width: 1525px; margin-left: -240px;">
+                    <app-footer></app-footer>
                 </div>
 
 
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+    <!-- right side 3 containers -->
+
+    <div>
+        <div class="small-container2">
+            <div style="display: flex; align-items: center; gap: 10px; margin-left: 20px; margin-top: 10px;">
+                <img src="nakshatra.png" alt="" height="90px">
+                <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                    <p style="font-size: 22px; font-weight: 1000; margin-bottom: 0;">Nakshathra</p>
+                    <p style="color: rgb(167, 166, 166); margin: 0;">Pro Advizar</p>
+                    <p style="color: rgb(167, 166, 166); margin: 0;">Real Estate</p>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <!-- Call Button -->
+                <button class="call-btn">
+                    <i class="fa-solid fa-phone"></i> Call
+                </button>
+
+                <!-- Email Button -->
+                <button class="email-btn">
+                    <i class="fa-solid fa-envelope"></i> Email
+                </button>
+
+                <!-- WhatsApp Button -->
+                <button class="whatsapp-btn" (click)="sendWhatsAppMessage()">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </button>
+
+            </div>
+            <hr style="margin-top: 8px;">
+
+            <div class="view-all">
+                <a routerLink="/listing" style="text-decoration: none;">
+                    <p style="margin-right: 5px;">View all properties</p>
+                </a>
+                <i class="fa-solid fa-angle-right" style="margin-bottom: 11px;"></i>
+            </div>
+
+        </div>
+
+        <div class="small-container22">Offers Popup or blinker</div>
+
+        <div class="small-container222">Why you should buy<br><b>Kalpataru Vivant?</b>
+            <div class="kalpataru-cont">
+
+                <div style="display: flex;">
+                    <div class="icon">
+                        <div class="diamond"></div>
+                    </div>
+                    <p style="margin-top: 7px;"><span
+                            style="font-size: 15px; font-weight: 600; font-style: italic; margin-left: 10px;">NEW
+                            LAUNCH</span>
+                        <span style="font-size: 15px; margin-left: 5px;">BENEFITS</span>
+                    </p>
+                </div>
+
+                <div class="bullets">
+                    <p>Best Prices</p>
+                    <p>&bull; Unit of choice</p>
+                    <p>&bull; Easy Payment Plans</p>
+                </div>
+            </div>
+
+            <div class="bullets2">
+                <ul class="bullets2">
+                    <li style="margin-top: 10px;">Just 5 minutes to Western Express Highway</li>
+                    <li>C.S.M. International Airport located just 5.4km away</li>
+                    <li>Panoramic podium amenity views from deck</li>
+
+                    <div style="display: flex;">
+                        <li>Established social ecosystem<br> with pro...</li>
+                        <p style="margin-left: 20px; color: red;">+2 more</p>
+                    </div>
+                </ul>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <button class="brochure">Brochure</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>

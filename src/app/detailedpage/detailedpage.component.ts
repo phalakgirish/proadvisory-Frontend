@@ -7,7 +7,7 @@ import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-detailedpage',
-  imports: [CommonModule, FormsModule, RouterLink,NavbarComponent,FooterComponent],
+  imports: [CommonModule, FormsModule, RouterLink, NavbarComponent, FooterComponent],
   templateUrl: './detailedpage.component.html',
   styleUrl: './detailedpage.component.css'
 })
@@ -35,62 +35,147 @@ export class DetailedpageComponent implements AfterViewInit, OnInit {
       image: 'cont-1.png',
       bigImage: 'big-cont1img.png',
       smallImage1: 'small-cont1.png',
+      smallImage2: 'small-cont2.png',
+      title:'1BHk'
+    },
+    {
+      id: 2,
+      location: 'Karwar, Navi Mumbai',
+      propertyTitle: 'Balaji Symphony',
+      constructionStatus: 'Ready to Move',
+      priceRange: '₹15 - 30 L',
+      apartmentType: '1 BHK Apartment',
+      pricePerSqft: '50,000',
+      beds: 2, baths: 2,
+      carpetArea: 780, bedrooms: 2, balcony: '1 Balcony',
+      parking: 'Covered Parking', addedDate: 'January 2024',
+      propertyId: '67890', reraNumber: '123456789',
+      possessionDate: '31-12-2024', propertyFloor: '6 out of 10',
+      image: 'cont-2.png',
+      bigImage: 'cont-2.png',
+      smallImage1: 'small-cont1.png',
       smallImage2: 'small-cont2.png'
-    },   
-    // {
-    //   id: 2,
-    //   location: 'Karwar, Navi Mumbai',
-    //   propertyTitle: 'Balaji Symphony',
-    //   constructionStatus: 'Ready to Move',
-    //   priceRange: '₹11 - 25 L',
-    //   apartmentType: '1,2 BHK Apartment',
-    //   pricePerSqft: '50,000',
-    //   beds: 2, baths: 2,
-    //   carpetArea: 780, bedrooms: 2, balcony: '1 Balcony',
-    //   parking: 'Covered Parking', addedDate: 'January 2024',
-    //   propertyId: '67890', reraNumber: '123456789',
-    //   possessionDate: '31-12-2024', propertyFloor: '6 out of 10',
-    //   image: 'cont-2.png',
-    //   bigImage: 'big-cont1img.png',
-    //   smallImage1: 'small-cont1.png',
-    //   smallImage2: 'small-cont2.png'
-    // }
+    },
+    {
+      id: 3,
+      location: 'Ulwe, Navi Mumbai',
+      propertyTitle: 'Marathon',
+      constructionStatus: 'Ready to Move',
+      priceRange: '₹11 - 27 L',
+      apartmentType: '2 BHK Apartment',
+      pricePerSqft: '50,000',
+      beds: 4, baths: 2,
+      carpetArea: 780, bedrooms: 2, balcony: '1 Balcony',
+      parking: 'Covered Parking', addedDate: 'January 2024',
+      propertyId: '67890', reraNumber: '123456789',
+      possessionDate: '31-12-2024', propertyFloor: '9 out of 10',
+      image: 'cont-2.png',
+      bigImage: 'cont-3.png',
+      smallImage1: 'small-cont1.png',
+      smallImage2: 'small-cont2.png'
+    },
+    {
+      id: 4,
+      location: 'Ulwe, Navi Mumbai',
+      propertyTitle: 'The Highlands',
+      constructionStatus: 'Ready to Move',
+      priceRange: '₹11 - 25 L',
+      apartmentType: '3 BHK Apartment',
+      pricePerSqft: '50,000',
+      beds: 4, baths: 2,
+      carpetArea: 780, bedrooms: 2, balcony: '1 Balcony',
+      parking: 'Covered Parking', addedDate: 'January 2024',
+      propertyId: '67890', reraNumber: '123456789',
+      possessionDate: '31-12-2024', propertyFloor: '9 out of 10',
+      image: 'cont-2.png',
+      bigImage: 'cont-5.png',
+      smallImage1: 'small-cont1.png',
+      smallImage2: 'small-cont2.png'
+    },
+    {
+      id: 5,
+      location: 'Ulwe, Navi Mumbai',
+      propertyTitle: 'Olympia',
+      constructionStatus: 'Ready to Move',
+      priceRange: '₹11 - 25 L',
+      apartmentType: '4 BHK Apartment',
+      pricePerSqft: '50,000',
+      beds: 4, baths: 2,
+      carpetArea: 800, bedrooms: 2, balcony: '1 Balcony',
+      parking: 'Covered Parking', addedDate: 'January 2024',
+      propertyId: '67890', reraNumber: '123456789',
+      possessionDate: '31-12-2024', propertyFloor: '9 out of 10',
+      image: 'cont-2.png',
+      bigImage: 'olympia.png',
+      smallImage1: 'small-cont1.png',
+      smallImage2: 'small-cont2.png'
+    },
+    {
+      id: 6,
+      location: 'Ulwe, Navi Mumbai',
+      propertyTitle: 'Paradise',
+      constructionStatus: 'Ready to Move',
+      priceRange: '₹11 - 25 L',
+      apartmentType: '5 BHK Apartment',
+      pricePerSqft: '50,000',
+      beds: 4, baths: 2,
+      carpetArea: 780, bedrooms: 2, balcony: '1 Balcony',
+      parking: 'Covered Parking', addedDate: 'January 2024',
+      propertyId: '67890', reraNumber: '123456789',
+      possessionDate: '31-12-2024', propertyFloor: '9 out of 10',
+      image: 'cont-2.png',
+      bigImage: 'cont-1.png',
+      smallImage1: 'small-cont1.png',
+      smallImage2: 'small-cont2.png'
+    }
   ];
+  cdr: any;
 
   constructor(private route: ActivatedRoute, private router: Router) { }
-
+  selectedItem: typeof this.items[0] | undefined = undefined;
+  item: typeof this.items[0] | undefined = undefined;
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      console.log("Params from URL:", params.keys, params.get('id')); // Debugging
-
-      // Ensure the ID is properly extracted
       const paramId = params.get('id');
-      console.log("Raw param ID:", paramId);
+      console.log("Raw param ID:", paramId); // Debugging
 
       if (paramId) {
-        this.cardId = Number(paramId);
-        console.log("Extracted Card ID:", this.cardId);
-      } else {
-        console.error("No ID found in the route!");
+        this.selectedItem = this.items.find(item => item.id === Number(paramId));
+        console.log("Extracted Selected Item:", this.selectedItem);
+      }
+
+      if (!this.selectedItem) {
+        console.error("No matching property found!");
       }
     });
+    this.generateCards();
+
   }
 
 
 
-  selectedItem = this.items[0]; // Default selected item
+
+
+
+  // selectedItem = this.items[0]; // Default selection
 
   selectProperty(id: number) {
-    this.selectedItem = this.items.find(item => item.id === id) || this.selectedItem;
+    this.selectedItem = this.items.find(item => item.id === id) || this.items[0];
+    console.log("Updated selectedItem:", this.selectedItem);
   }
 
-  cards = [
-    { title: '2 BHK Apartment', area: '874.03-1010 sqft', price: '₹ 1.47 - 1.56 Cr + Charges' },
-    { title: '3 BHK Apartment', area: '874.03-1010 sqft', price: '₹ 2.47 - 3.56 Cr + Charges' },
-    { title: '4 BHK Apartment', area: '874.03-1010 sqft', price: '₹ 3.47 - 5.56 Cr' },
-    { title: '5 BHK Apartment', area: '1000-1200 sqft', price: '₹ 4.50 - 6.00 Cr' }
-  ];
 
+  cards: { title: string; area: string; price: string }[] = [];
+
+
+
+  generateCards() {
+    this.cards = this.items.map(item => ({
+      title: item.apartmentType,
+      area: `${item.carpetArea} sqft`,
+      price: `${item.priceRange}+Charges`
+    }));
+  }
 
   ngAfterViewInit() {
     console.log("Slider initialized:", this.slider.nativeElement);
@@ -144,32 +229,44 @@ export class DetailedpageComponent implements AfterViewInit, OnInit {
   }
 
 
-
-  isPhotoModalOpen = false;  // Initially hidden
+  isPhotoModalOpen = false;
   photos = [
     'small-cont1.png',
+    'small-cont2.png',
     'small-cont1.png',
     'small-cont2.png'
-  ];  // Add your photo URLs here
+  ];
+  currentIndex = 1; // Start from the second image (middle one)
 
   togglePhotos() {
-    this.isPhotoModalOpen = !this.isPhotoModalOpen;  // Toggle modal visibility
-
+    this.isPhotoModalOpen = !this.isPhotoModalOpen;
 
     if (this.isPhotoModalOpen) {
       document.body.style.overflow = 'hidden';  // Disable scrolling
     } else {
-      document.body.style.overflow = 'auto';    // Enable scrolling when closed
+      document.body.style.overflow = 'auto';  // Enable scrolling when closed
+    }
+  }
+
+  prevPhoto() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    }
+  }
+
+  nextPhoto() {
+    if (this.currentIndex < this.photos.length - 1) {
+      this.currentIndex++;
     }
   }
 
 
 
-
   sendWhatsAppMessage() {
+    const phoneNumber = "91XXXXXXXXXX"; // Replace with the actual number (including country code)
     const message = encodeURIComponent("Hello, I'm interested in this property. Can you provide more details?");
-    const whatsappURL = `https://wa.me/?text=${message}`; // No number, lets user select a contact
-
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+  
     window.open(whatsappURL, '_blank');
   }
 

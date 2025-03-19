@@ -31,13 +31,25 @@
 
             <div class="search-container">
                 <img src="search.png" alt="Search Icon" class="search-icon">
-                <input type="text" class="search-box" placeholder="Search">
-
+                <input type="text" class="search-box" placeholder="Search" 
+                       [(ngModel)]="searchQuery" (input)="onSearchInput()">
+            
                 <div class="location-cont">
                     <img src="location.png" alt="Location Icon" class="location-icon">
                     <button class="search-btn">Search</button>
                 </div>
+             <!-- Suggestions Dropdown (Moved Inside) -->
+             <ul *ngIf="showSuggestions" class="suggestions-box">
+                <li *ngFor="let suggestion of filteredSuggestions" 
+                    (click)="selectSuggestion(suggestion.name)">
+                    {{ suggestion.name }}
+                </li>
+            </ul>
+               
             </div>
+            
+            
+            
         </div>
     </div>
 
