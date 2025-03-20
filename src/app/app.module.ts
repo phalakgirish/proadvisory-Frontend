@@ -7,6 +7,8 @@ import { CustomizeComponent } from './customize/customize.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ListingComponent } from './listing/listing.component';
 import { DetailedpageComponent } from './detailedpage/detailedpage.component';
+import { CrudService } from './service/crud.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,7 @@ import { DetailedpageComponent } from './detailedpage/detailedpage.component';
     BrowserModule,
     FormsModule,AppRoutingModule
   ],
-  providers: [],
+  providers: [CrudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

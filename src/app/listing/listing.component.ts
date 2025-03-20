@@ -39,8 +39,12 @@ export class ListingComponent {
 // }
   showMore: boolean = false; // Track visibility of extra buttons
 
-  buttons: string[] = ['Lift', 'Parking', 'Power Backup', 'Park', 'Gymnasium', 'Security', 'Clubhouse', 'Swimming Pool', 'Play Area', 'Fire Safety']; // Button names
+  buttons: string[] = [
+    'Lift', 'Parking', 'Power Backup', 'Park', 'Gymnasium', 
+    'Security', 'Clubhouse', 'Swimming Pool', 'Play Area', 'Fire Safety'
+  ]; 
 
+  
   // Getter function to dynamically show/hide buttons
   get visibleButtons() {
     return this.showMore ? this.buttons : this.buttons.slice(0, 5);
@@ -50,10 +54,11 @@ export class ListingComponent {
   toggleAmenities() {
     this.showMore = !this.showMore;
   }
-  selectedButtons: string[] = []; // Stores selected buttons
   selectedItems!: {};
   cdr: any;
   showOnlyVerified: any;
+// Store selected buttons
+selectedButtons: string[] = []; 
 
   toggleSelection(button: string) {
     if (this.selectedButtons.includes(button)) {
@@ -93,13 +98,13 @@ export class ListingComponent {
   viewMode: string = 'grid'; // Default view
 
   items = [
-    { id: 1, title: 'Tulip Wadhwa Wise City', description: '1 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹15 - 25 L', '₹25 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-1.png', featured: true ,status:'Ready to move' },
-    { id: 2, title: 'Balaji Symphony', description: '2 BHK Apartment in Karwar', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹11 - 25 L', '₹25 - 40 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-2.png', featured: true,status:'Under Construction' },
-    { id: 3, title: 'Marathon', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '3 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-3.png', featured: true ,status:'Under Construction'},
-    { id: 4, title: 'The Highlands', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-5.png', featured: true,status:'Ready to move' },
-    { id: 5, title: 'Olympia', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-4.png', featured: true ,status:'Under Construction'},
-    { id: 6, title: 'Paradise', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹14 - 26 L', '₹26 - 40 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-1.png', featured: true, newLaunch: true ,status:'New Launch'}
-  ];
+    { id: 1, title: 'Tulip Wadhwa Wise City', description: '1 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹15 - 25 L', '₹25 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-1.png', featured: true ,status:'Ready to move',amenities: ['Lift', 'Parking', 'Gymnasium','Security','Fire Safety'], },
+      { id: 2, title: 'Balaji Symphony', description: '2 BHK Apartment in Karwar', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹11 - 25 L', '₹25 - 40 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-2.png', featured: true,status:'Under Construction', amenities: ['Swimming Pool', 'Security', 'Clubhouse','Lift','Fire Safety'] },
+      { id: 3, title: 'Marathon', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '3 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-3.png', featured: true ,status:'Under Construction', amenities: ['Parking', 'Power Backup', 'Park','Security','Lift','Fire Safety']},
+      { id: 4, title: 'The Highlands', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-5.png', featured: true,status:'Ready to move', amenities: ['Swimming Pool', 'Security', 'Clubhouse','Security','Lift','Fire Safety'] },
+      { id: 5, title: 'Olympia', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-4.png', featured: true ,status:'Under Construction', amenities: ['Parking', 'Power Backup', 'Park','Security','Lift','Fire Safety']},
+      { id: 6, title: 'Paradise', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹14 - 26 L', '₹26 - 40 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-1.png', featured: true, newLaunch: true ,status:'New Launch', amenities: ['Swimming Pool', 'Security', 'Clubhouse','Security','Lift','Fire Safety']}
+    ];
 
 
   setView(mode: string) {
@@ -109,12 +114,12 @@ export class ListingComponent {
 
   loadMoreItems() {
     const newItems = [
-      { id: 1, title: 'Tulip Wadhwa Wise City', description: '1 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹15 - 25 L', '₹25 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-1.png', featured: true, status:'Ready to move' },
-      { id: 2, title: 'Balaji Symphony', description: '2 BHK Apartment in Karwar', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹11 - 25 L', '₹25 - 40 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-2.png', featured: true,status:'Under Construction' },
-      { id: 3, title: 'Marathon', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-3.png', featured: true ,status:'Under Construction'},
-      { id: 4, title: 'The Highlands', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-5.png', featured: true ,status:'Ready to move'},
-      { id: 5, title: 'Olympia', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-4.png', featured: true ,status:'Under Construction'},
-      { id: 6, title: 'Paradise', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹14 - 26 L', '₹26 - 40 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-1.png', featured: true ,status:'New Launch'}
+      { id: 1, title: 'Tulip Wadhwa Wise City', description: '1 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹15 - 25 L', '₹25 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-1.png', featured: true ,status:'Ready to move',amenities: ['Lift', 'Parking', 'Gymnasium','Security'], },
+      { id: 2, title: 'Balaji Symphony', description: '2 BHK Apartment in Karwar', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹11 - 25 L', '₹25 - 40 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-2.png', featured: true,status:'Under Construction', amenities: ['Swimming Pool', 'Security', 'Clubhouse','Lift'] },
+      { id: 3, title: 'Marathon', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '3 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-3.png', featured: true ,status:'Under Construction', amenities: ['Parking', 'Power Backup', 'Park','Security','Lift']},
+      { id: 4, title: 'The Highlands', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-5.png', featured: true,status:'Ready to move', amenities: ['Swimming Pool', 'Security', 'Clubhouse','Security','Lift'] },
+      { id: 5, title: 'Olympia', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹16 - 26 L', '₹26 - 30 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-4.png', featured: true ,status:'Under Construction', amenities: ['Parking', 'Power Backup', 'Park','Security','Lift']},
+      { id: 6, title: 'Paradise', description: '2 BHK Apartment in Ulwe', bhkOptions: ['1 BHK', '2 BHK'], priceOptions: ['₹14 - 26 L', '₹26 - 40 L'], beds: 4, baths: 2, hasParking: true, image: 'cont-1.png', featured: true, newLaunch: true ,status:'New Launch', amenities: ['Swimming Pool', 'Security', 'Clubhouse','Security','Lift']}
     ];
     this.items = [...this.items, ...newItems]; // Append new properties
   }
@@ -126,6 +131,8 @@ export class ListingComponent {
       .filter(item => {
         // Ensure item contains the selected BHK, or show all if "All" is selected
         const matchesBHK = this.selectedBHK === 'All' || !this.selectedBHK || item.bhkOptions.includes(this.selectedBHK);
+        
+        const matchesAmenities = this.selectedButtons.length === 0 || this.selectedButtons.every(amenity => item.amenities.includes(amenity));
 
         // Ensure the item is verified if the toggle is active
         const isVerified = !this.showOnlyVerified || item.id === 1 || item.id === 5;
@@ -139,7 +146,7 @@ export class ListingComponent {
         const matchesStatus = this.selectedStatuses.length === 0 || this.selectedStatuses.includes(item.status);
         
 
-        return matchesBHK && isVerified && matchesPrice && matchesNewLaunch && matchesStatus;
+        return matchesBHK && isVerified && matchesPrice && matchesNewLaunch && matchesStatus && matchesAmenities;
       })
       .map(item => {
         // If "All" is selected or no specific BHK is chosen, return the full item

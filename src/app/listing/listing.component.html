@@ -17,7 +17,7 @@
                 <a (click)="selectedBHK = 'Shop'">Shop</a><br>
                 <a (click)="selectedBHK = 'Others'">Others</a><br>
             </div>
-            
+
             <p style="font-size: 20px;margin-top: 25px;">Budget</p>
             <div class="slider-container">
                 <!-- Labels Above Thumbs -->
@@ -64,11 +64,17 @@
             </div>
 
             <div class="button-container">
-                <button class="toggle-btn" *ngFor="let button of visibleButtons"
-                    [ngClass]="{'selected': selectedButtons.includes(button)}" (click)="toggleSelection(button)">
+                <button class="toggle-btn" *ngFor="let button of visibleButtons" (click)="toggleSelection(button)"
+                    [class.selected]="selectedButtons.includes(button)">
                     {{ button }}
                 </button>
+                <!-- <button class="toggle-btn" *ngFor="let button of visibleButtons"
+                    [ngClass]="{'selected': selectedButtons.includes(button)}" (click)="toggleSelection(button)">
+                    {{ button }}
+                </button> -->
             </div>
+           
+           
 
 
 
@@ -79,14 +85,15 @@
 
 
             <p style="font-size: 20px; margin-top: 25px;">Property Types</p>
-<div class="checkbox-container">
-  <label *ngFor="let status of checkboxes">
-    <input type="checkbox" (change)="toggleStatusFilter(status)" [checked]="selectedStatuses.includes(status)" />
-    {{ status }}
-  </label>
-</div>
+            <div class="checkbox-container">
+                <label *ngFor="let status of checkboxes">
+                    <input type="checkbox" (change)="toggleStatusFilter(status)"
+                        [checked]="selectedStatuses.includes(status)" />
+                    {{ status }}
+                </label>
+            </div>
 
-            
+
         </div>
 
     </div>
@@ -132,76 +139,83 @@
         <div [ngClass]="{'grid-view': viewMode === 'grid', 'list-view': viewMode === 'list'}">
 
 
-            <ng-container *ngFor="let item of filteredItems">
-                <div class="box" *ngIf="selectedBHK === 'All' || !selectedBHK || item.bhkOptions.includes(selectedBHK)|| !selectedLocation || item.description.includes(selectedLocation)">
+            <ng-container *ngIf="filteredItems.length > 0; else noResults">
+                <ng-container *ngFor="let item of filteredItems">
+                  <div class="box"
+                      *ngIf="selectedBHK === 'All' || !selectedBHK || item.bhkOptions.includes(selectedBHK) || 
+                             !selectedLocation || item.description.includes(selectedLocation)">
                     <div class="box4-3">
-                        <button class="featured-btn" *ngIf="item.featured">Featured</button>
-                        <button class="favorite-btn">
-                            <i class="far fa-heart"></i>
-                        </button>
+                      <button class="featured-btn" *ngIf="item.featured">Featured</button>
+                      <button class="favorite-btn">
+                        <i class="far fa-heart"></i>
+                      </button>
                     </div>
-
+              
                     <img [src]="item.image" [alt]="item.title">
-
-
-                        <div class="box-text">
-                            <div style="display: flex;">
-                                <h5>{{ item.title }}</h5>
-                                <div class="verified-badge" *ngIf="item.id === 1 || item.id === 5"
-                                    [ngClass]="{'custom-margin': item.id === 5}">
-                                    <i class="fa-solid fa-shield"></i> Verified
-                                </div>
-
-                                <div class="new-launch-badge" *ngIf="item.id === 6 || item.id === 2"
-                                [ngClass]="{'custom-margin-newlaunch':item.id === 2}">
-                                    🚀 New Launch
-                                </div>
-                            </div>
-                            <p>{{ item.description }}</p>
-
-                            <div class="bhk-container">
-                                <!-- BHK Row -->
-                                <div class="bhk-row">
-                                    <ng-container *ngFor="let bhk of item.bhkOptions">
-                                        <span *ngIf="selectedBHK === 'All' || !selectedBHK || item.bhkOptions.includes(selectedBHK) || !selectedBHK || bhk === selectedBHK">
-                                            {{ bhk }}
-                                        </span>
-                                    </ng-container>
-
-                                </div>
-
-                                <!-- Price Row -->
-                                <div class="price-row">
-                                    <span *ngFor="let price of item.priceOptions">{{ price }}</span>
-                                </div>
-
-                                <!-- Bed, Bath, Parking -->
-                                <div class="bed-bath-parking">
-                                    <button class="bed-button">
-                                        <i class="fa-solid fa-bed"></i> {{ item.beds }} Bed
-                                    </button>
-                                    <button class="bath-button">
-                                        <i class="fa-solid fa-bath"></i> {{ item.baths }} Bath
-                                    </button>
-                                    <button class="parking-button" *ngIf="item.hasParking">
-                                        <i class="fa-solid fa-square-parking"></i> Parking
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="actions">
-                                <a [routerLink]="['/detailedpage', item.id]">
-                                    <button class="view-details-btn">View more details</button>
-                                </a>
-
-                                <button class="whatsapp-button">
-                                    <i class="fa-brands fa-whatsapp" (click)="sendWhatsAppMessage()"></i>
-                                </button>
-                            </div>
+              
+                    <div class="box-text">
+                      <div style="display: flex;">
+                        <h5>{{ item.title }}</h5>
+                        <div class="verified-badge" *ngIf="item.id === 1 || item.id === 5" 
+                             [ngClass]="{'custom-margin': item.id === 5}">
+                          <i class="fa-solid fa-shield"></i> Verified
                         </div>
-                        
+              
+                        <div class="new-launch-badge" *ngIf="item.id === 6 || item.id === 2" 
+                             [ngClass]="{'custom-margin-newlaunch':item.id === 2}">
+                          🚀 New Launch
+                        </div>
+                      </div>
+                      <p>{{ item.description }}</p>
+              
+                      <div class="bhk-container">
+                        <!-- BHK Row -->
+                        <div class="bhk-row">
+                          <ng-container *ngFor="let bhk of item.bhkOptions">
+                            <span *ngIf="selectedBHK === 'All' || !selectedBHK || item.bhkOptions.includes(selectedBHK) || bhk === selectedBHK">
+                              {{ bhk }}
+                            </span>
+                          </ng-container>
+                        </div>
+              
+                        <!-- Price Row -->
+                        <div class="price-row">
+                          <span *ngFor="let price of item.priceOptions">{{ price }}</span>
+                        </div>
+              
+                        <!-- Bed, Bath, Parking -->
+                        <div class="bed-bath-parking">
+                          <button class="bed-button">
+                            <i class="fa-solid fa-bed"></i> {{ item.beds }} Bed
+                          </button>
+                          <button class="bath-button">
+                            <i class="fa-solid fa-bath"></i> {{ item.baths }} Bath
+                          </button>
+                          <button class="parking-button" *ngIf="item.hasParking">
+                            <i class="fa-solid fa-square-parking"></i> Parking
+                          </button>
+                        </div>
+                      </div>
+              
+                      <div class="actions">
+                        <a [routerLink]="['/detailedpage', item.id]">
+                          <button class="view-details-btn">View more details</button>
+                        </a>
+              
+                        <button class="whatsapp-button">
+                          <i class="fa-brands fa-whatsapp" (click)="sendWhatsAppMessage()"></i>
+                        </button>
+                      </div>
                     </div>
-            </ng-container>
+                  </div>
+                </ng-container>
+              </ng-container>
+              
+              <!-- If no properties match, show a message -->
+              <ng-template #noResults>
+                <p>No properties match the selected filters.</p>
+              </ng-template>
+              
         </div>
     </div>
 </div>
