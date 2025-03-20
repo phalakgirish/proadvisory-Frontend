@@ -4,6 +4,7 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { CrudService } from '../service/crud.service';
 
 @Component({
   selector: 'app-listing',
@@ -12,6 +13,30 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrl: './listing.component.css'
 })
 export class ListingComponent {
+//   constructor(
+//     public crud : CrudService 
+//   ){ }
+
+//   ngOnInit(): void {
+//     console.log("HomeComponent Initialized");
+//     this.loadData();
+//   }
+//   loadData()
+// {
+//   this.crud.getData("properties").subscribe(
+//     {
+//       next:(res:any)=>{
+//         console.log(res);
+//       },
+//       error:(err:any)=>{
+
+//       },
+//       complete:()=>{
+
+//       }  
+//     }
+//   )
+// }
   showMore: boolean = false; // Track visibility of extra buttons
 
   buttons: string[] = ['Lift', 'Parking', 'Power Backup', 'Park', 'Gymnasium', 'Security', 'Clubhouse', 'Swimming Pool', 'Play Area', 'Fire Safety']; // Button names
